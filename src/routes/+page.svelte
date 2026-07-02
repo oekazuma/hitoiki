@@ -107,7 +107,7 @@
 
 <svelte:head>
   <title>ひといき</title>
-  <meta name="description" content="呼吸に意識を向けるためのガイド" />
+  <meta name="description" content="すって、はいて、ひといき。画面に合わせて呼吸するだけの、呼吸ガイドです。" />
 </svelte:head>
 
 <main class="app" class:running={engineState.running}>

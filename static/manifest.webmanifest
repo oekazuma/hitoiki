@@ -1,7 +1,7 @@
 {
   "name": "ひといき",
   "short_name": "ひといき",
-  "description": "呼吸に意識を向けるためのガイド",
+  "description": "すって、はいて、ひといき。画面に合わせて呼吸するだけの、呼吸ガイドです。",
   "lang": "ja",
   "start_url": ".",
   "display": "standalone",

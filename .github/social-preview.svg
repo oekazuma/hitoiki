@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="ひといき — 呼吸に意識を向けるためのガイド">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="ひといき — すって、はいて、ひといき。">
   <rect width="1280" height="640" fill="#f6f4ef"/>
   <!-- 呼吸ガイドの円 -->
   <g transform="translate(340, 320)">
@@ -9,5 +9,5 @@
   <!-- ワードマーク -->
   <text x="520" y="348" font-family="'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="104" font-weight="600" letter-spacing="16" fill="#33403c">ひといき</text>
   <!-- タグライン -->
-  <text x="524" y="428" font-family="'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="34" letter-spacing="6" fill="#5a6a65">呼吸に意識を向けるためのガイド</text>
+  <text x="524" y="428" font-family="'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="36" letter-spacing="7" fill="#5a6a65">すって、はいて、ひといき。</text>
 </svg>
