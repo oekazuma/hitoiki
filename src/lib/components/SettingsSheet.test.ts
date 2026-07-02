@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
+import { tick } from 'svelte';
 import { describe, expect, it } from 'vitest';
 import { createSettings } from '$lib/settings.svelte';
 import SettingsSheet from './SettingsSheet.svelte';
@@ -40,5 +41,26 @@ describe('SettingsSheet', () => {
     expect(settings.theme).toBe('auto');
     await user.click(screen.getByRole('radio', { name: 'つきあかり' }));
     expect(settings.theme).toBe('moon');
+  });
+
+  it('シートの外(バックドロップ)をタップすると閉じる', async () => {
+    const settings = createSettings(null);
+    const { container } = render(SettingsSheet, { open: true, settings });
+    const dialog = container.querySelector('dialog') as HTMLDialogElement;
+
+    // バックドロップのクリックは dialog 自身が target になる
+    await fireEvent.click(dialog);
+    await tick();
+    expect(dialog.open).toBe(false);
+  });
+
+  it('シートの中身をタップしても閉じない', async () => {
+    const settings = createSettings(null);
+    const { container } = render(SettingsSheet, { open: true, settings });
+    const dialog = container.querySelector('dialog') as HTMLDialogElement;
+
+    await fireEvent.click(screen.getByText('せってい'));
+    await tick();
+    expect(dialog.open).toBe(true);
   });
 });

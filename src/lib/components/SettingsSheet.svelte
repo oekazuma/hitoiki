@@ -28,7 +28,16 @@
   });
 </script>
 
-<dialog bind:this={dialogEl} class="sheet" aria-labelledby="settings-title" onclose={() => (open = false)}>
+<!-- バックドロップのクリックは dialog 自身が target になることを利用して閉じる(キーボードは Esc が担う) -->
+<dialog
+  bind:this={dialogEl}
+  class="sheet"
+  aria-labelledby="settings-title"
+  onclose={() => (open = false)}
+  onclick={(e) => {
+    if (e.target === dialogEl) open = false;
+  }}
+>
   <h2 id="settings-title">せってい</h2>
 
   <fieldset>
@@ -97,6 +106,10 @@
 <style>
   .sheet {
     width: min(100%, 420px);
+    /* 背後のテーマの変化が見えるよう、画面全体は覆わない */
+    max-height: 55dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     margin: auto auto 0;
     border: none;
     border-radius: 20px 20px 0 0;
@@ -105,8 +118,9 @@
     color: var(--fg);
   }
 
+  /* 背後が見えるよう、うっすらとだけ暗くする */
   .sheet::backdrop {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.12);
   }
 
   h2 {
