@@ -46,10 +46,15 @@
           type="radio"
           name="preset"
           value={preset.id}
+          aria-label={preset.name}
+          aria-describedby={`preset-desc-${preset.id}`}
           checked={settings.presetId === preset.id}
           onchange={() => settings.selectPreset(preset.id)}
         />
-        <span>{preset.name}</span>
+        <span class="preset-text">
+          <span>{preset.name}</span>
+          <span class="preset-desc" id={`preset-desc-${preset.id}`}>{preset.description}</span>
+        </span>
       </label>
     {/each}
   </fieldset>
@@ -144,6 +149,19 @@
     align-items: center;
     gap: 0.75rem;
     min-height: 44px;
+  }
+
+  .preset-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.375rem 0;
+  }
+
+  .preset-desc {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--fg-soft);
   }
 
   .slider {

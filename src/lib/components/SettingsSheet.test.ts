@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 import { tick } from 'svelte';
 import { describe, expect, it } from 'vitest';
+import { PRESETS } from '$lib/breathing/presets';
 import { createSettings } from '$lib/settings.svelte';
 import SettingsSheet from './SettingsSheet.svelte';
 
@@ -14,6 +15,15 @@ describe('SettingsSheet', () => {
     await user.click(screen.getByRole('radio', { name: 'ボックス呼吸' }));
     expect(settings.presetId).toBe('box');
     expect(settings.custom.holdIn).toBe(4);
+  });
+
+  it('各プリセットに説明文が表示される', () => {
+    const settings = createSettings(null);
+    render(SettingsSheet, { open: true, settings });
+
+    for (const preset of PRESETS) {
+      expect(screen.getByText(preset.description)).toBeInTheDocument();
+    }
   });
 
   it('スライダーを動かすとカスタム扱いになる', async () => {

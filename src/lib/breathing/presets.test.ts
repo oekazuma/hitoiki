@@ -23,6 +23,12 @@ describe('presets', () => {
     });
   });
 
+  it('各プリセットに説明文がある', () => {
+    for (const preset of PRESETS) {
+      expect(preset.description.length).toBeGreaterThan(0);
+    }
+  });
+
   it('フェーズ表記はひらがな', () => {
     expect(PHASE_LABELS.inhale).toBe('すって');
     expect(PHASE_LABELS.holdIn).toBe('とめて');
