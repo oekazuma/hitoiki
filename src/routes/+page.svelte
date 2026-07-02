@@ -4,6 +4,7 @@
 	import { createSettings } from '$lib/settings.svelte';
 	import BreathingCircle from '$lib/components/BreathingCircle.svelte';
 	import ControlBar from '$lib/components/ControlBar.svelte';
+	import SettingsSheet from '$lib/components/SettingsSheet.svelte';
 
 	const settings = createSettings();
 	const engine = new BreathingEngine();
@@ -91,6 +92,8 @@
 	/>
 	<ControlBar running={engineState.running} onstart={startGuide} onstop={stopGuide} />
 </main>
+
+<SettingsSheet bind:open={sheetOpen} {settings} />
 
 <style>
 	.app {
