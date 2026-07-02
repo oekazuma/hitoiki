@@ -9,10 +9,10 @@
   const RING_RADIUS = 56;
   const CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 
-  const restScale = $derived(reducedMotion.current ? 0.92 : 0.6);
+  const restScale = $derived(reducedMotion.current ? 0.92 : 0.72);
 
   const scale = $derived.by(() => {
-    if (!running) return restScale;
+    if (!running || phase === 'ready') return restScale;
     const eased = 0.5 - 0.5 * Math.cos(Math.PI * phaseProgress);
     if (phase === 'inhale') return restScale + (1 - restScale) * eased;
     if (phase === 'exhale') return 1 - (1 - restScale) * eased;
@@ -20,8 +20,8 @@
     return restScale;
   });
 
-  const label = $derived(running ? PHASE_LABELS[phase] : 'ひといき');
-  const dashOffset = $derived(running ? CIRCUMFERENCE * phaseProgress : CIRCUMFERENCE);
+  const label = $derived(running ? PHASE_LABELS[phase] : 'タップではじめる');
+  const dashOffset = $derived(running && phase !== 'ready' ? CIRCUMFERENCE * phaseProgress : CIRCUMFERENCE);
 </script>
 
 <div class="guide">
@@ -37,7 +37,7 @@
     />
   </svg>
   <div class="circle" aria-hidden="true" style:transform="scale({scale})"></div>
-  <p class="label" aria-hidden="true">{label}</p>
+  <p class="label" class:hint={!running} aria-hidden="true">{label}</p>
 </div>
 <p class="visually-hidden" role="status" aria-live="polite">
   {#if running}{label}{/if}
@@ -90,5 +90,10 @@
     font-weight: 600;
     letter-spacing: 0.1em;
     color: var(--circle-fg);
+  }
+
+  /* 停止中のヒントは円に収まるよう控えめに */
+  .label.hint {
+    font-size: 1.125rem;
   }
 </style>

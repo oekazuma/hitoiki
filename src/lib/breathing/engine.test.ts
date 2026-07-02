@@ -95,6 +95,38 @@ describe('BreathingEngine', () => {
     expect(e.tick(1000)).toBe(before);
   });
 
+  it('リードイン付きで start すると ready フェーズから始まる', () => {
+    const e = new BreathingEngine();
+    e.start(BOX, 0, 1.5);
+    expect(e.state.running).toBe(true);
+    expect(e.state.phase).toBe('ready');
+    expect(e.state.phaseProgress).toBe(0);
+    expect(e.state.remainingSeconds).toBe(2);
+  });
+
+  it('リードイン経過後に最初のフェーズへ進む', () => {
+    const e = new BreathingEngine();
+    e.start(BOX, 0, 1.5);
+    expect(e.tick(1000).phase).toBe('ready');
+    expect(e.tick(1500).phase).toBe('inhale');
+    expect(e.tick(1500).phaseProgress).toBeCloseTo(0);
+    expect(e.tick(3500).phaseProgress).toBeCloseTo(0.5);
+  });
+
+  it('リードインを大きくまたぐ tick も正しく処理する', () => {
+    const e = new BreathingEngine();
+    e.start(BOX, 0, 1.5);
+    expect(e.tick(5600).phase).toBe('holdIn'); // 1.5 + 4 = 5.5 秒で holdIn へ
+  });
+
+  it('start 直前より過去のタイムスタンプでも負の経過率を返さない', () => {
+    const e = new BreathingEngine();
+    e.start(BOX, 1000);
+    const s = e.tick(990); // rAF のフレーム時刻が start より僅かに過去になるケース
+    expect(s.phaseProgress).toBe(0);
+    expect(s.phase).toBe('inhale');
+  });
+
   it('subscribe は即時に現在値を通知し、更新のたびに呼ばれる', () => {
     const e = new BreathingEngine();
     const seen: string[] = [];

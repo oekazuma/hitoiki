@@ -16,6 +16,8 @@ export class BreathingEngine {
   #nextPattern: BreathingPattern | null = null;
   #phaseIndex = 0;
   #phaseStart = 0; // 現在フェーズの開始時刻(ミリ秒)
+  #leadIn = 0; // 最初の吸うに入る前の「間」(秒)
+  #inLeadIn = false;
   #state: EngineState = IDLE_STATE;
   #subscribers = new Set<(s: EngineState) => void>();
 
@@ -29,13 +31,24 @@ export class BreathingEngine {
     return () => this.#subscribers.delete(fn);
   }
 
-  start(pattern: BreathingPattern, now: number): void {
+  start(pattern: BreathingPattern, now: number, leadInSeconds = 0): void {
     const first = PHASE_ORDER.findIndex((p) => pattern[p] > 0);
     if (first === -1) return; // 全フェーズ0秒では開始しない
     this.#pattern = { ...pattern };
     this.#nextPattern = null;
     this.#phaseIndex = first;
     this.#phaseStart = now;
+    this.#leadIn = Math.max(0, leadInSeconds);
+    this.#inLeadIn = this.#leadIn > 0;
+    if (this.#inLeadIn) {
+      this.#setState({
+        running: true,
+        phase: 'ready',
+        phaseProgress: 0,
+        remainingSeconds: Math.ceil(this.#leadIn)
+      });
+      return;
+    }
     const duration = pattern[PHASE_ORDER[first]];
     this.#setState({
       running: true,
@@ -48,6 +61,7 @@ export class BreathingEngine {
   stop(): void {
     this.#pattern = null;
     this.#nextPattern = null;
+    this.#inLeadIn = false;
     this.#setState(IDLE_STATE);
   }
 
@@ -61,7 +75,24 @@ export class BreathingEngine {
   tick(now: number): EngineState {
     if (!this.#state.running || !this.#pattern) return this.#state;
 
-    let elapsed = (now - this.#phaseStart) / 1000;
+    // rAF のフレーム時刻が start 時刻より僅かに過去になるケースを吸収する
+    let elapsed = Math.max(0, (now - this.#phaseStart) / 1000);
+
+    if (this.#inLeadIn) {
+      if (elapsed < this.#leadIn) {
+        this.#setState({
+          running: true,
+          phase: 'ready',
+          phaseProgress: elapsed / this.#leadIn,
+          remainingSeconds: Math.ceil(this.#leadIn - elapsed)
+        });
+        return this.#state;
+      }
+      elapsed -= this.#leadIn;
+      this.#phaseStart += this.#leadIn * 1000;
+      this.#inLeadIn = false;
+    }
+
     let duration = this.#pattern[PHASE_ORDER[this.#phaseIndex]];
 
     while (elapsed >= duration) {

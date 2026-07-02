@@ -8,14 +8,27 @@ describe('BreathingCircle', () => {
     matchingQueries.clear();
   });
 
-  it('停止中は「ひといき」と表示する', () => {
+  it('停止中は「タップではじめる」と表示する', () => {
     render(BreathingCircle, { phase: 'inhale', phaseProgress: 0, running: false });
-    expect(screen.getAllByText('ひといき').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('タップではじめる').length).toBeGreaterThan(0);
   });
 
   it('実行中はフェーズ名を表示する', () => {
     render(BreathingCircle, { phase: 'exhale', phaseProgress: 0.5, running: true });
     expect(screen.getAllByText('はいて').length).toBeGreaterThan(0);
+  });
+
+  it('リードイン(ready)中は「そのまま」と表示し円は静止する', () => {
+    const { container } = render(BreathingCircle, { phase: 'ready', phaseProgress: 0.5, running: true });
+    expect(screen.getAllByText('そのまま').length).toBeGreaterThan(0);
+    const circle = container.querySelector('.circle') as HTMLElement;
+    expect(circle.style.transform).toBe('scale(0.72)');
+  });
+
+  it('静止時のスケールは 0.72(穏やかな振幅)', () => {
+    const { container } = render(BreathingCircle, { phase: 'inhale', phaseProgress: 0, running: false });
+    const circle = container.querySelector('.circle') as HTMLElement;
+    expect(circle.style.transform).toBe('scale(0.72)');
   });
 
   it('実行中はフェーズ名を aria-live 領域で通知する', () => {

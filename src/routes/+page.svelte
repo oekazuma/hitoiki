@@ -3,8 +3,10 @@
   import type { PhaseName } from '$lib/breathing/types';
   import { createSettings } from '$lib/settings.svelte';
   import BreathingCircle from '$lib/components/BreathingCircle.svelte';
-  import ControlBar from '$lib/components/ControlBar.svelte';
   import SettingsSheet from '$lib/components/SettingsSheet.svelte';
+
+  // タップから最初の「すって」までの間(呼吸に合流するための静止時間)
+  const LEAD_IN_SECONDS = 1.5;
 
   const settings = createSettings();
   const engine = new BreathingEngine();
@@ -20,7 +22,7 @@
   }
 
   function startGuide() {
-    engine.start({ ...settings.custom }, performance.now());
+    engine.start({ ...settings.custom }, performance.now(), LEAD_IN_SECONDS);
     if (!engine.state.running) {
       engineState = engine.state;
       return;
@@ -35,6 +37,14 @@
     engine.stop();
     engineState = engine.state;
     void releaseWakeLock();
+  }
+
+  function toggleGuide() {
+    if (engineState.running) {
+      stopGuide();
+    } else {
+      startGuide();
+    }
   }
 
   async function acquireWakeLock() {
@@ -88,25 +98,44 @@
 </svelte:head>
 
 <main class="app" class:running={engineState.running}>
+  <!-- 画面のどこを押しても開始/停止できる(狙って押す負荷をなくす) -->
+  <button type="button" class="tap-area" aria-label={engineState.running ? 'とめる' : 'はじめる'} onclick={toggleGuide}>
+    <BreathingCircle
+      phase={engineState.phase}
+      phaseProgress={engineState.phaseProgress}
+      running={engineState.running}
+    />
+  </button>
   <button type="button" class="settings-button" onclick={() => (sheetOpen = true)}> せってい </button>
-  <BreathingCircle phase={engineState.phase} phaseProgress={engineState.phaseProgress} running={engineState.running} />
-  <ControlBar running={engineState.running} onstart={startGuide} onstop={stopGuide} />
 </main>
 
 <SettingsSheet bind:open={sheetOpen} {settings} />
 
 <style>
   .app {
+    position: relative;
     min-height: 100dvh;
+  }
+
+  .tap-area {
+    position: absolute;
+    inset: 0;
+    width: 100%;
     display: grid;
-    grid-template-rows: auto 1fr auto;
-    justify-items: center;
-    align-items: center;
-    padding: 1rem 1rem calc(2rem + env(safe-area-inset-bottom));
+    place-items: center;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .tap-area:focus-visible {
+    outline-offset: -4px;
   }
 
   .settings-button {
-    justify-self: end;
+    position: absolute;
+    top: calc(0.75rem + env(safe-area-inset-top));
+    right: 0.75rem;
+    z-index: 1;
     padding: 0.5rem 1rem;
     color: var(--fg-soft);
     transition: opacity 0.4s;
