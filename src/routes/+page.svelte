@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { MetaTags } from 'svelte-meta-tags';
   import { WebHaptics, type Vibration } from 'web-haptics';
   import { BreathingEngine } from '$lib/breathing/engine';
   import type { PhaseName } from '$lib/breathing/types';
@@ -11,6 +12,15 @@
   const LEAD_IN_SECONDS = 1.5;
 
   const REPO_URL = 'https://github.com/oekazuma/hitoiki';
+  const SITE_URL = 'https://oekazuma.github.io/hitoiki/';
+  const SITE_TITLE = 'ひといき';
+  const SITE_DESCRIPTION = 'すって、はいて、ひといき。画面に合わせて呼吸するだけの、呼吸ガイドです。';
+  const OGP_IMAGE = {
+    url: `${SITE_URL}ogp.png`,
+    width: 1280,
+    height: 640,
+    alt: 'ひといき — すって、はいて、ひといき。'
+  };
 
   const settings = createSettings();
   const engine = new BreathingEngine();
@@ -132,10 +142,27 @@
   $effect(() => () => cancelAnimationFrame(rafId));
 </script>
 
-<svelte:head>
-  <title>ひといき</title>
-  <meta name="description" content="すって、はいて、ひといき。画面に合わせて呼吸するだけの、呼吸ガイドです。" />
-</svelte:head>
+<MetaTags
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  canonical={SITE_URL}
+  openGraph={{
+    type: 'website',
+    url: SITE_URL,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    siteName: SITE_TITLE,
+    locale: 'ja_JP',
+    images: [OGP_IMAGE]
+  }}
+  twitter={{
+    cardType: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    image: OGP_IMAGE.url,
+    imageAlt: OGP_IMAGE.alt
+  }}
+/>
 
 <div class="app" class:running={engineState.running}>
   <header class="site-header">

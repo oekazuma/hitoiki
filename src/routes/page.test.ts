@@ -19,6 +19,19 @@ describe('メイン画面', () => {
     expect(screen.getByRole('button', { name: 'はじめる' })).toBeInTheDocument();
   });
 
+  it('メタタグ(タイトル・OGP・Twitter カード)が設定される', () => {
+    render(Page);
+
+    expect(document.title).toBe('ひといき');
+    const og = (property: string) =>
+      document.head.querySelector(`meta[property="${property}"]`)?.getAttribute('content');
+    expect(og('og:image')).toBe('https://oekazuma.github.io/hitoiki/ogp.png');
+    expect(og('og:url')).toBe('https://oekazuma.github.io/hitoiki/');
+    expect(document.head.querySelector('meta[name="twitter:card"]')?.getAttribute('content')).toBe(
+      'summary_large_image'
+    );
+  });
+
   it('ヘッダー(ロゴ)とフッター(免責・ライセンス・GitHub)が表示される', () => {
     render(Page);
 

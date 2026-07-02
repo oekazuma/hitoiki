@@ -50,6 +50,7 @@
     "vitest": "catalog:"
   },
   "dependencies": {
+    "svelte-meta-tags": "catalog:",
     "web-haptics": "catalog:"
   }
 }
