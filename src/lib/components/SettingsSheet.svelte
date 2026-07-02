@@ -106,8 +106,6 @@
       <span>振動で呼吸のリズムを伝える</span>
     </label>
   {/if}
-
-  <button type="button" class="close" onclick={() => (open = false)}>とじる</button>
 </dialog>
 
 <style>
@@ -179,14 +177,5 @@
   .slider input {
     width: 100%;
     min-height: 44px;
-  }
-
-  .close {
-    width: 100%;
-    min-height: 48px;
-    border-radius: 24px;
-    background: var(--button-bg);
-    color: var(--button-fg);
-    font-weight: 600;
   }
 </style>

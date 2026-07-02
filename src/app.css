@@ -13,8 +13,6 @@
   --ring-fg: #33403c;
   /* 以下は各テーマ共通の導出色 */
   --ring-track: color-mix(in srgb, var(--fg) 16%, transparent);
-  --button-bg: var(--fg);
-  --button-fg: var(--bg);
 }
 
 [data-theme='night'] {
