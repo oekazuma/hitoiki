@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="ひといき — 呼吸に意識を向けるためのガイド">
+  <rect width="1280" height="640" fill="#f6f4ef"/>
+  <!-- 呼吸ガイドの円 -->
+  <g transform="translate(340, 320)">
+    <circle r="132" fill="none" stroke="#a7c4bc" stroke-width="8" stroke-linecap="round" stroke-dasharray="622 208" transform="rotate(-90)"/>
+    <circle r="104" fill="#a7c4bc" opacity="0.45"/>
+    <circle r="76" fill="#a7c4bc"/>
+  </g>
+  <!-- ワードマーク -->
+  <text x="520" y="348" font-family="'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="104" font-weight="600" letter-spacing="16" fill="#33403c">ひといき</text>
+  <!-- タグライン -->
+  <text x="524" y="428" font-family="'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="34" letter-spacing="6" fill="#5a6a65">呼吸に意識を向けるためのガイド</text>
+</svg>
