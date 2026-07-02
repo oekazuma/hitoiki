@@ -1,10 +1,15 @@
 import '@testing-library/jest-dom/vitest';
 
 // jsdom は matchMedia を実装していない(svelte/reactivity の MediaQuery が使う)
+// テスト側から `matchingQueries` に対象クエリを追加すると matches: true を返す(既定では何もマッチしない)
+export const matchingQueries = new Set<string>();
+
 if (typeof window !== 'undefined' && !window.matchMedia) {
 	window.matchMedia = (query: string) =>
 		({
-			matches: false,
+			get matches() {
+				return matchingQueries.has(query);
+			},
 			media: query,
 			onchange: null,
 			addEventListener() {},

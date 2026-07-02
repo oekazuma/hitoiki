@@ -46,7 +46,7 @@ describe('メイン画面', () => {
 
 			await user.click(screen.getByRole('button', { name: 'とめる' }));
 			expect(screen.getByRole('button', { name: 'はじめる' })).toBeInTheDocument();
-			expect(screen.getByRole('status')).toHaveTextContent('');
+			expect(screen.getByRole('status')).toBeEmptyDOMElement();
 		} finally {
 			rafSpy.mockRestore();
 			cafSpy.mockRestore();

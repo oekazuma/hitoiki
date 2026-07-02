@@ -1,8 +1,13 @@
 import { render, screen } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
+import { matchingQueries } from '../../vitest-setup';
 import BreathingCircle from './BreathingCircle.svelte';
 
 describe('BreathingCircle', () => {
+	afterEach(() => {
+		matchingQueries.clear();
+	});
+
 	it('停止中は「ひといき」と表示する', () => {
 		render(BreathingCircle, { phase: 'inhale', phaseProgress: 0, running: false });
 		expect(screen.getAllByText('ひといき').length).toBeGreaterThan(0);
@@ -20,6 +25,17 @@ describe('BreathingCircle', () => {
 
 	it('停止中は aria-live 領域を空にする', () => {
 		render(BreathingCircle, { phase: 'inhale', phaseProgress: 0, running: false });
-		expect(screen.getByRole('status')).toHaveTextContent('');
+		expect(screen.getByRole('status')).toBeEmptyDOMElement();
+	});
+
+	it('prefers-reduced-motion 時は静止スケールを 0.92 にする', () => {
+		matchingQueries.add('(prefers-reduced-motion: reduce)');
+		const { container } = render(BreathingCircle, {
+			phase: 'inhale',
+			phaseProgress: 0,
+			running: false
+		});
+		const circle = container.querySelector('.circle') as HTMLElement;
+		expect(circle.style.transform).toBe('scale(0.92)');
 	});
 });

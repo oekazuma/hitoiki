@@ -22,8 +22,13 @@
 	});
 </script>
 
-<dialog bind:this={dialogEl} class="sheet" onclose={() => (open = false)}>
-	<h2>せってい</h2>
+<dialog
+	bind:this={dialogEl}
+	class="sheet"
+	aria-labelledby="settings-title"
+	onclose={() => (open = false)}
+>
+	<h2 id="settings-title">せってい</h2>
 
 	<fieldset>
 		<legend>呼吸のパターン</legend>
@@ -69,7 +74,7 @@
 		</label>
 	{/if}
 
-	<button class="close" onclick={() => (open = false)}>とじる</button>
+	<button type="button" class="close" onclick={() => (open = false)}>とじる</button>
 </dialog>
 
 <style>

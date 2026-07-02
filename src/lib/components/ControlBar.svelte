@@ -6,7 +6,7 @@
 	}: { running: boolean; onstart: () => void; onstop: () => void } = $props();
 </script>
 
-<button class="control" onclick={running ? onstop : onstart}>
+<button type="button" class="control" onclick={running ? onstop : onstart}>
 	{running ? 'とめる' : 'はじめる'}
 </button>
 

@@ -1,11 +1,11 @@
 import { PHASE_ORDER, type BreathingPattern, type EngineState } from './types';
 
-const IDLE_STATE: EngineState = {
+const IDLE_STATE: EngineState = Object.freeze({
 	running: false,
 	phase: 'inhale',
 	phaseProgress: 0,
 	remainingSeconds: 0
-};
+});
 
 /**
  * 呼吸フェーズの進行を管理するステートマシン。UIに依存しない。

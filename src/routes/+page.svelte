@@ -21,6 +21,10 @@
 
 	function startGuide() {
 		engine.start({ ...settings.custom }, performance.now());
+		if (!engine.state.running) {
+			engineState = engine.state;
+			return;
+		}
 		engineState = engine.state;
 		rafId = requestAnimationFrame(frame);
 		void acquireWakeLock();
@@ -84,7 +88,9 @@
 </svelte:head>
 
 <main class="app" class:running={engineState.running}>
-	<button class="settings-button" onclick={() => (sheetOpen = true)}>せってい</button>
+	<button type="button" class="settings-button" onclick={() => (sheetOpen = true)}>
+		せってい
+	</button>
 	<BreathingCircle
 		phase={engineState.phase}
 		phaseProgress={engineState.phaseProgress}
@@ -115,5 +121,10 @@
 	/* 実行中は視界のノイズを減らす */
 	.running .settings-button {
 		opacity: 0.35;
+	}
+
+	/* キーボード操作時はフォーカスを隠さない */
+	.running .settings-button:focus-visible {
+		opacity: 1;
 	}
 </style>

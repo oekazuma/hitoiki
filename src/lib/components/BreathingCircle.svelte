@@ -43,7 +43,7 @@
 	<div class="circle" aria-hidden="true" style:transform="scale({scale})"></div>
 	<p class="label" aria-hidden="true">{label}</p>
 </div>
-<p class="visually-hidden" role="status" aria-live="polite">{running ? label : ''}</p>
+<p class="visually-hidden" role="status" aria-live="polite">{#if running}{label}{/if}</p>
 
 <style>
 	.guide {
