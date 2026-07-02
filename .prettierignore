@@ -2,6 +2,3 @@
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
-
-# 設計・計画ドキュメント(履歴的な文書のため整形対象外)
-docs/
