@@ -1,0 +1,20 @@
+minimumReleaseAge: 4320
+
+allowBuilds:
+  esbuild: true
+  sharp: true
+
+catalog:
+  '@sveltejs/adapter-static': ^3.0.10
+  '@sveltejs/kit': ^2.63.0
+  '@sveltejs/vite-plugin-svelte': ^7.1.2
+  '@testing-library/jest-dom': ^6.9.1
+  '@testing-library/svelte': ^5.4.2
+  '@testing-library/user-event': ^14.6.1
+  jsdom: ^29.1.1
+  sharp: ^0.35.2
+  svelte: ^5.56.1
+  svelte-check: ^4.6.0
+  typescript: ^6.0.3
+  vite: ^8.0.16
+  vitest: ^4.1.9

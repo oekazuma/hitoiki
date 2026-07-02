@@ -23,14 +23,14 @@
 ## 開発
 
 ```bash
-npm install
-npm run dev        # 開発サーバー
-npm run test       # テスト(watch)
-npm run test:run   # テスト(1回)
-npm run build      # 本番ビルド
-npm run preview    # ビルドのプレビュー
-npm run check      # 型チェック
-npm run icons      # アイコンPNGの再生成
+pnpm install
+pnpm dev        # 開発サーバー
+pnpm test       # テスト(watch)
+pnpm test:run   # テスト(1回)
+pnpm build      # 本番ビルド
+pnpm preview    # ビルドのプレビュー
+pnpm check      # 型チェック
+pnpm icons      # アイコンPNGの再生成
 ```
 
 ## 制約事項
