@@ -1,7 +1,6 @@
 {
   "name": "hitoiki",
   "private": true,
-  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -44,13 +43,11 @@
     "sharp": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
+    "svelte-meta-tags": "catalog:",
     "typescript": "catalog:",
     "typescript-eslint": "catalog:",
     "vite": "catalog:",
-    "vitest": "catalog:"
-  },
-  "dependencies": {
-    "svelte-meta-tags": "catalog:",
+    "vitest": "catalog:",
     "web-haptics": "catalog:"
   }
 }

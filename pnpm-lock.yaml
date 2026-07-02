@@ -88,13 +88,6 @@ catalogs:
 importers:
 
   .:
-    dependencies:
-      svelte-meta-tags:
-        specifier: 'catalog:'
-        version: 5.0.1(svelte@5.56.4(@typescript-eslint/types@8.62.0))(typescript@6.0.3)
-      web-haptics:
-        specifier: 'catalog:'
-        version: 0.0.6(svelte@5.56.4(@typescript-eslint/types@8.62.0))
     devDependencies:
       '@eslint/compat':
         specifier: 'catalog:'
@@ -159,6 +152,9 @@ importers:
       svelte-check:
         specifier: 'catalog:'
         version: 4.7.1(picomatch@4.0.4)(svelte@5.56.4(@typescript-eslint/types@8.62.0))(typescript@6.0.3)
+      svelte-meta-tags:
+        specifier: 'catalog:'
+        version: 5.0.1(svelte@5.56.4(@typescript-eslint/types@8.62.0))(typescript@6.0.3)
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -171,6 +167,9 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.1)(jsdom@29.1.1)(vite@8.1.0(@types/node@26.0.1))
+      web-haptics:
+        specifier: 'catalog:'
+        version: 0.0.6(svelte@5.56.4(@typescript-eslint/types@8.62.0))
 
 packages:
 
