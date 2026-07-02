@@ -19,6 +19,32 @@ describe('メイン画面', () => {
     expect(screen.getByRole('button', { name: 'はじめる' })).toBeInTheDocument();
   });
 
+  it('ヘッダー(ロゴ)とフッター(免責・ライセンス・GitHub)が表示される', () => {
+    render(Page);
+
+    expect(screen.getByRole('banner')).toHaveTextContent('ひといき');
+    expect(screen.getByText(/医療行為を目的としたものではありません/)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'MIT License' })).toHaveAttribute(
+      'href',
+      'https://github.com/oekazuma/hitoiki/blob/main/LICENSE.md'
+    );
+    expect(screen.getByRole('link', { name: 'GitHub リポジトリ' })).toHaveAttribute(
+      'href',
+      'https://github.com/oekazuma/hitoiki'
+    );
+  });
+
+  it('実行中はヘッダー・フッター・せっていが非表示になる(running クラス)', async () => {
+    const user = userEvent.setup();
+    const { container } = render(Page);
+
+    expect(container.querySelector('.app')?.classList.contains('running')).toBe(false);
+    await user.click(screen.getByRole('button', { name: 'はじめる' }));
+    expect(container.querySelector('.app')?.classList.contains('running')).toBe(true);
+    await user.click(screen.getByRole('button', { name: 'とめる' }));
+    expect(container.querySelector('.app')?.classList.contains('running')).toBe(false);
+  });
+
   it('せっていボタンはタップ領域と独立して動く', async () => {
     const user = userEvent.setup();
     render(Page);
