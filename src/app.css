@@ -1,28 +1,81 @@
+/*
+ * テーマは html の data-theme 属性で切り替える(src/lib/themes.ts と対応)。
+ * 値を変えるときは themes.ts と揃えること(themes.test.ts が同期を検証する)。
+ * デフォルト(:root)は「もり」— data-theme が付く前のフォールバック。
+ */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --bg: #f6f4ef;
   --fg: #33403c;
   --fg-soft: #5a6a65;
   --circle-bg: #a7c4bc;
   --circle-fg: #223330;
-  --ring-track: rgba(51, 64, 60, 0.15);
   --ring-fg: #33403c;
-  --button-bg: #33403c;
-  --button-fg: #f6f4ef;
+  /* 以下は各テーマ共通の導出色 */
+  --ring-track: color-mix(in srgb, var(--fg) 16%, transparent);
+  --button-bg: var(--fg);
+  --button-fg: var(--bg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #191d1c;
-    --fg: #d9e2df;
-    --fg-soft: #a5b3ae;
-    --circle-bg: #3d534d;
-    --circle-fg: #e2ebe8;
-    --ring-track: rgba(217, 226, 223, 0.18);
-    --ring-fg: #d9e2df;
-    --button-bg: #d9e2df;
-    --button-fg: #191d1c;
-  }
+[data-theme='night'] {
+  color-scheme: dark;
+  --bg: #10182a;
+  --fg: #d5deed;
+  --fg-soft: #9dabc4;
+  --circle-bg: #27395c;
+  --circle-fg: #e2eaf6;
+  --ring-fg: #aebfd8;
+}
+
+[data-theme='sea'] {
+  color-scheme: light;
+  --bg: #e7f0f3;
+  --fg: #1f4552;
+  --fg-soft: #486976;
+  --circle-bg: #a7cbd8;
+  --circle-fg: #173741;
+  --ring-fg: #2e5866;
+}
+
+[data-theme='forest'] {
+  color-scheme: light;
+  --bg: #f6f4ef;
+  --fg: #33403c;
+  --fg-soft: #5a6a65;
+  --circle-bg: #a7c4bc;
+  --circle-fg: #223330;
+  --ring-fg: #33403c;
+}
+
+[data-theme='sunset'] {
+  color-scheme: light;
+  --bg: #f4e0d3;
+  --bg-gradient: linear-gradient(165deg, #f4e0d3 0%, #e3d3e6 100%);
+  --fg: #54303f;
+  --fg-soft: #734f5e;
+  --circle-bg: #e0b7a4;
+  --circle-fg: #4c2b39;
+  --ring-fg: #6d4455;
+}
+
+[data-theme='moon'] {
+  color-scheme: dark;
+  --bg: #1d1c23;
+  --fg: #d9d4e2;
+  --fg-soft: #a59eb3;
+  --circle-bg: #3b3550;
+  --circle-fg: #e4deee;
+  --ring-fg: #b6accb;
+}
+
+[data-theme='cloud'] {
+  color-scheme: light;
+  --bg: #f2f3f5;
+  --fg: #3d444d;
+  --fg-soft: #5f6873;
+  --circle-bg: #d3d9e0;
+  --circle-fg: #333a42;
+  --ring-fg: #4c545e;
 }
 
 * {
@@ -36,10 +89,15 @@ body {
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: var(--bg-gradient, none);
+  background-attachment: fixed;
   color: var(--fg);
   font-family: system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.6s,
+    color 0.6s;
 }
 
 button {

@@ -13,7 +13,8 @@ function fakeStorage(initial: Record<string, string> = {}) {
 const DEFAULTS: SettingsData = {
   presetId: 'gentle',
   custom: { inhale: 4, holdIn: 0, exhale: 6, holdOut: 0 },
-  vibration: false
+  vibration: false,
+  theme: 'auto'
 };
 
 describe('loadSettings', () => {
@@ -29,7 +30,8 @@ describe('loadSettings', () => {
     const data: SettingsData = {
       presetId: 'box',
       custom: { inhale: 4, holdIn: 4, exhale: 4, holdOut: 4 },
-      vibration: true
+      vibration: true,
+      theme: 'moon'
     };
     const storage = fakeStorage({ [STORAGE_KEY]: JSON.stringify(data) });
     expect(loadSettings(storage)).toEqual(data);
@@ -101,5 +103,21 @@ describe('createSettings', () => {
     settings.setVibration(true);
     expect(settings.vibration).toBe(true);
     expect(JSON.parse(storage.dump()[STORAGE_KEY]).vibration).toBe(true);
+  });
+
+  it('テーマ設定を保存する', () => {
+    const storage = fakeStorage();
+    const settings = createSettings(storage as unknown as Storage);
+    expect(settings.theme).toBe('auto');
+    settings.setTheme('night');
+    expect(settings.theme).toBe('night');
+    expect(JSON.parse(storage.dump()[STORAGE_KEY]).theme).toBe('night');
+  });
+
+  it('不正なテーマ値は auto にフォールバックする', () => {
+    const storage = fakeStorage({
+      [STORAGE_KEY]: JSON.stringify({ ...DEFAULTS, theme: 'rainbow' })
+    });
+    expect(loadSettings(storage).theme).toBe('auto');
   });
 });

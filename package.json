@@ -33,6 +33,7 @@
     "@testing-library/svelte": "catalog:",
     "@testing-library/user-event": "catalog:",
     "@types/eslint": "catalog:",
+    "@types/node": "catalog:",
     "eslint": "catalog:",
     "eslint-config-prettier": "catalog:",
     "eslint-plugin-svelte": "catalog:",

@@ -1,5 +1,6 @@
 import type { BreathingPattern } from './breathing/types';
 import { clampPattern, DEFAULT_PRESET_ID, PRESETS, type PresetId } from './breathing/presets';
+import { THEME_IDS, type ThemeSetting } from './themes';
 
 export const STORAGE_KEY = 'hitoiki:settings:v1';
 
@@ -7,15 +8,21 @@ export interface SettingsData {
   presetId: PresetId;
   custom: BreathingPattern;
   vibration: boolean;
+  theme: ThemeSetting;
 }
 
 const PRESET_IDS: readonly PresetId[] = ['gentle', 'four78', 'box', 'custom'];
+
+function isThemeSetting(value: unknown): value is ThemeSetting {
+  return value === 'auto' || THEME_IDS.includes(value as (typeof THEME_IDS)[number]);
+}
 
 function defaultData(): SettingsData {
   return {
     presetId: DEFAULT_PRESET_ID,
     custom: { ...PRESETS[0].pattern },
-    vibration: false
+    vibration: false,
+    theme: 'auto'
   };
 }
 
@@ -37,7 +44,8 @@ export function loadSettings(storage: Pick<Storage, 'getItem'> | null): Settings
     return {
       presetId: PRESET_IDS.includes(parsed.presetId as PresetId) ? (parsed.presetId as PresetId) : fallback.presetId,
       custom: isPattern(parsed.custom) ? clampPattern(parsed.custom) : fallback.custom,
-      vibration: parsed.vibration === true
+      vibration: parsed.vibration === true,
+      theme: isThemeSetting(parsed.theme) ? parsed.theme : fallback.theme
     };
   } catch {
     return fallback;
@@ -93,6 +101,13 @@ export function createSettings(storage: Storage | null = getLocalStorage()) {
     },
     setVibration(v: boolean): void {
       data.vibration = v;
+      persist();
+    },
+    get theme() {
+      return data.theme;
+    },
+    setTheme(theme: ThemeSetting): void {
+      data.theme = theme;
       persist();
     }
   };

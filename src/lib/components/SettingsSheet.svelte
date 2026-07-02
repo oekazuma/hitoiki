@@ -1,12 +1,18 @@
 <script lang="ts">
   import { PRESETS } from '$lib/breathing/presets';
   import type { Settings } from '$lib/settings.svelte';
+  import { THEME_IDS, THEMES, type ThemeSetting } from '$lib/themes';
 
   let { open = $bindable(false), settings }: { open: boolean; settings: Settings } = $props();
 
   let dialogEl: HTMLDialogElement | undefined = $state();
 
   const canVibrate = typeof navigator !== 'undefined' && 'vibrate' in navigator;
+
+  const themeOptions: { id: ThemeSetting; label: string }[] = [
+    { id: 'auto', label: 'おまかせ(時間帯でかわる)' },
+    ...THEME_IDS.map((id) => ({ id, label: THEMES[id].label }))
+  ];
 
   const sliders = [
     { key: 'inhale', label: 'すう', min: 1 },
@@ -37,6 +43,22 @@
           onchange={() => settings.selectPreset(preset.id)}
         />
         <span>{preset.name}</span>
+      </label>
+    {/each}
+  </fieldset>
+
+  <fieldset>
+    <legend>テーマ</legend>
+    {#each themeOptions as option (option.id)}
+      <label class="preset">
+        <input
+          type="radio"
+          name="theme"
+          value={option.id}
+          checked={settings.theme === option.id}
+          onchange={() => settings.setTheme(option.id)}
+        />
+        <span>{option.label}</span>
       </label>
     {/each}
   </fieldset>

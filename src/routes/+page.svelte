@@ -2,6 +2,7 @@
   import { BreathingEngine } from '$lib/breathing/engine';
   import type { PhaseName } from '$lib/breathing/types';
   import { createSettings } from '$lib/settings.svelte';
+  import { resolveAutoTheme, THEMES } from '$lib/themes';
   import BreathingCircle from '$lib/components/BreathingCircle.svelte';
   import SettingsSheet from '$lib/components/SettingsSheet.svelte';
 
@@ -67,6 +68,18 @@
   // 設定変更は次サイクルの頭から反映する
   $effect(() => {
     engine.setPattern({ ...settings.custom });
+  });
+
+  // テーマ: 「おまかせ」は時間帯で自動選択し、1分ごとに再評価する
+  let hour = $state(new Date().getHours());
+  $effect(() => {
+    const id = setInterval(() => (hour = new Date().getHours()), 60_000);
+    return () => clearInterval(id);
+  });
+  const activeTheme = $derived(settings.theme === 'auto' ? resolveAutoTheme(hour) : settings.theme);
+  $effect(() => {
+    document.documentElement.setAttribute('data-theme', activeTheme);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEMES[activeTheme].colors.bg);
   });
 
   // フェーズ切替時の振動(設定オン かつ 対応端末のみ)

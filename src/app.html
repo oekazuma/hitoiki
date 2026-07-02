@@ -4,9 +4,28 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
-    <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#191d1c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f4ef" />
     <link rel="apple-touch-icon" href="%sveltekit.assets%/icons/apple-touch-icon.png" />
+    <script>
+      // ちらつき防止: 描画前にテーマを適用する(判定は src/lib/themes.ts と対応。変更時は揃えること)
+      (function () {
+        try {
+          var theme = 'auto';
+          var raw = localStorage.getItem('hitoiki:settings:v1');
+          if (raw) {
+            var saved = JSON.parse(raw).theme;
+            if (typeof saved === 'string') theme = saved;
+          }
+          if (theme === 'auto') {
+            var h = new Date().getHours();
+            theme = h >= 5 && h < 10 ? 'sea' : h >= 10 && h < 16 ? 'forest' : h >= 16 && h < 19 ? 'sunset' : 'night';
+          }
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          /* localStorage 不可などでは既定テーマのまま */
+        }
+      })();
+    </script>
     %sveltekit.head%
   </head>
   <body>

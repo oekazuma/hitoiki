@@ -31,4 +31,14 @@ describe('SettingsSheet', () => {
     // jsdom の navigator に vibrate は無い
     expect(screen.queryByRole('checkbox', { name: /振動/ })).toBeNull();
   });
+
+  it('テーマを選ぶと設定が切り替わる', async () => {
+    const user = userEvent.setup();
+    const settings = createSettings(null);
+    render(SettingsSheet, { open: true, settings });
+
+    expect(settings.theme).toBe('auto');
+    await user.click(screen.getByRole('radio', { name: 'つきあかり' }));
+    expect(settings.theme).toBe('moon');
+  });
 });
