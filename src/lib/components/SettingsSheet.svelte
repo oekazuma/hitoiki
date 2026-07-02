@@ -7,8 +7,6 @@
 
   let dialogEl: HTMLDialogElement | undefined = $state();
 
-  const canVibrate = typeof navigator !== 'undefined' && 'vibrate' in navigator;
-
   const themeOptions: { id: ThemeSetting; label: string }[] = [
     { id: 'auto', label: 'おまかせ(時間帯でかわる)' },
     ...THEME_IDS.map((id) => ({ id, label: THEMES[id].label }))
@@ -89,16 +87,14 @@
     {/each}
   </fieldset>
 
-  {#if canVibrate}
-    <label class="vibration">
-      <input
-        type="checkbox"
-        checked={settings.vibration}
-        onchange={(e) => settings.setVibration(e.currentTarget.checked)}
-      />
-      <span>フェーズの切り替わりで振動する</span>
-    </label>
-  {/if}
+  <label class="vibration">
+    <input
+      type="checkbox"
+      checked={settings.vibration}
+      onchange={(e) => settings.setVibration(e.currentTarget.checked)}
+    />
+    <span>振動で呼吸のリズムを伝える</span>
+  </label>
 
   <button type="button" class="close" onclick={() => (open = false)}>とじる</button>
 </dialog>

@@ -48,5 +48,8 @@
     "typescript-eslint": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"
+  },
+  "dependencies": {
+    "web-haptics": "catalog:"
   }
 }

@@ -26,11 +26,15 @@ describe('SettingsSheet', () => {
     expect(settings.presetId).toBe('custom');
   });
 
-  it('振動非対応の環境では振動トグルを表示しない', () => {
+  it('振動トグルで設定が切り替わる(iOS 含め常時表示)', async () => {
+    const user = userEvent.setup();
     const settings = createSettings(null);
     render(SettingsSheet, { open: true, settings });
-    // jsdom の navigator に vibrate は無い
-    expect(screen.queryByRole('checkbox', { name: /振動/ })).toBeNull();
+
+    const toggle = screen.getByRole('checkbox', { name: /振動/ });
+    expect(settings.vibration).toBe(false);
+    await user.click(toggle);
+    expect(settings.vibration).toBe(true);
   });
 
   it('テーマを選ぶと設定が切り替わる', async () => {
