@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" role="img" aria-label="ひといき">
+  <!-- 呼吸ガイドの円(アプリのモチーフ): 進捗リングと、拡縮する円の残像 -->
+  <circle cx="80" cy="80" r="66" fill="none" stroke="#a7c4bc" stroke-width="4" stroke-linecap="round" stroke-dasharray="311 104" transform="rotate(-90 80 80)"/>
+  <circle cx="80" cy="80" r="52" fill="#a7c4bc" opacity="0.45"/>
+  <circle cx="80" cy="80" r="38" fill="#a7c4bc"/>
+  <!-- ワードマーク(ダーク背景用) -->
+  <text x="172" y="98" font-family="'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="52" font-weight="600" letter-spacing="8" fill="#d9e2df">ひといき</text>
+</svg>

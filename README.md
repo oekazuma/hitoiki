@@ -1,4 +1,9 @@
-# ひといき
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/logo-dark.svg" />
+    <img src=".github/logo.svg" alt="ひといき" width="380" />
+  </picture>
+</p>
 
 呼吸に意識を向けるためのガイドです。
 
