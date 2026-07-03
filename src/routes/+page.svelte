@@ -6,6 +6,7 @@
   import { createSettings } from '$lib/settings.svelte';
   import { resolveAutoTheme, THEMES } from '$lib/themes';
   import BreathingCircle from '$lib/components/BreathingCircle.svelte';
+  import InstallHint from '$lib/components/InstallHint.svelte';
   import SettingsSheet from '$lib/components/SettingsSheet.svelte';
 
   // タップから最初の「すって」までの間(呼吸に合流するための静止時間)
@@ -201,6 +202,7 @@
   </main>
 
   <footer class="site-footer">
+    <InstallHint {settings} />
     <p class="disclaimer">ひといきは医療行為を目的としたものではありません</p>
     <p class="footer-links">
       <a href="{REPO_URL}/blob/main/LICENSE.md" target="_blank" rel="noopener noreferrer">MIT License</a>

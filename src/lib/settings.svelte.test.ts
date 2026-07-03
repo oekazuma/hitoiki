@@ -14,7 +14,8 @@ const DEFAULTS: SettingsData = {
   presetId: 'gentle',
   custom: { inhale: 4, holdIn: 0, exhale: 6, holdOut: 0 },
   vibration: false,
-  theme: 'auto'
+  theme: 'auto',
+  installHintDismissed: false
 };
 
 describe('loadSettings', () => {
@@ -31,7 +32,8 @@ describe('loadSettings', () => {
       presetId: 'box',
       custom: { inhale: 4, holdIn: 4, exhale: 4, holdOut: 4 },
       vibration: true,
-      theme: 'moon'
+      theme: 'moon',
+      installHintDismissed: true
     };
     const storage = fakeStorage({ [STORAGE_KEY]: JSON.stringify(data) });
     expect(loadSettings(storage)).toEqual(data);
@@ -119,5 +121,14 @@ describe('createSettings', () => {
       [STORAGE_KEY]: JSON.stringify({ ...DEFAULTS, theme: 'rainbow' })
     });
     expect(loadSettings(storage).theme).toBe('auto');
+  });
+
+  it('インストールヒントの既読を保存する', () => {
+    const storage = fakeStorage();
+    const settings = createSettings(storage as unknown as Storage);
+    expect(settings.installHintDismissed).toBe(false);
+    settings.dismissInstallHint();
+    expect(settings.installHintDismissed).toBe(true);
+    expect(JSON.parse(storage.dump()[STORAGE_KEY]).installHintDismissed).toBe(true);
   });
 });

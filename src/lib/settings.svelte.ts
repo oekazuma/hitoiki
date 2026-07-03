@@ -9,6 +9,8 @@ export interface SettingsData {
   custom: BreathingPattern;
   vibration: boolean;
   theme: ThemeSetting;
+  /** ホーム画面追加のヒントを閉じたか(一度閉じたら二度と出さない) */
+  installHintDismissed: boolean;
 }
 
 const PRESET_IDS: readonly PresetId[] = ['gentle', 'four78', 'box', 'custom'];
@@ -22,7 +24,8 @@ function defaultData(): SettingsData {
     presetId: DEFAULT_PRESET_ID,
     custom: { ...PRESETS[0].pattern },
     vibration: false,
-    theme: 'auto'
+    theme: 'auto',
+    installHintDismissed: false
   };
 }
 
@@ -45,7 +48,8 @@ export function loadSettings(storage: Pick<Storage, 'getItem'> | null): Settings
       presetId: PRESET_IDS.includes(parsed.presetId as PresetId) ? (parsed.presetId as PresetId) : fallback.presetId,
       custom: isPattern(parsed.custom) ? clampPattern(parsed.custom) : fallback.custom,
       vibration: parsed.vibration === true,
-      theme: isThemeSetting(parsed.theme) ? parsed.theme : fallback.theme
+      theme: isThemeSetting(parsed.theme) ? parsed.theme : fallback.theme,
+      installHintDismissed: parsed.installHintDismissed === true
     };
   } catch {
     return fallback;
@@ -108,6 +112,13 @@ export function createSettings(storage: Storage | null = getLocalStorage()) {
     },
     setTheme(theme: ThemeSetting): void {
       data.theme = theme;
+      persist();
+    },
+    get installHintDismissed() {
+      return data.installHintDismissed;
+    },
+    dismissInstallHint(): void {
+      data.installHintDismissed = true;
       persist();
     }
   };
