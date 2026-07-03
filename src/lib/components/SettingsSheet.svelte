@@ -1,5 +1,6 @@
 <script lang="ts">
   import { PRESETS } from '$lib/breathing/presets';
+  import { canVibrate } from '$lib/haptics';
   import type { Settings } from '$lib/settings.svelte';
   import { THEME_IDS, THEMES, type ThemeSetting } from '$lib/themes';
 
@@ -9,7 +10,7 @@
 
   // Vibration API 対応端末(Android 等)のみトグルを表示する。
   // iOS Safari は 26.5 で隠しスイッチのハックが塞がれ、Web からの触覚出力手段が無い
-  const canVibrate = typeof navigator !== 'undefined' && 'vibrate' in navigator;
+  const showVibrationToggle = canVibrate();
 
   const themeOptions: { id: ThemeSetting; label: string }[] = [
     { id: 'auto', label: 'おまかせ(時間帯でかわる)' },
@@ -99,7 +100,7 @@
     {/each}
   </fieldset>
 
-  {#if canVibrate}
+  {#if showVibrationToggle}
     <label class="vibration">
       <input
         type="checkbox"
