@@ -7,8 +7,17 @@
     <meta name="theme-color" content="#f6f4ef" />
     <link rel="apple-touch-icon" href="%sveltekit.assets%/icons/apple-touch-icon.png" />
     <script>
-      // ちらつき防止: 描画前にテーマを適用する(判定は src/lib/themes.ts と対応。変更時は揃えること)
+      // ちらつき防止: 描画前にテーマを適用する(判定と配色は src/lib/themes.ts と対応。変更時は揃えること)
       (function () {
+        // themes.ts の THEMES[id].colors.bg と一致させる(themes.test.ts が同期を検証する)
+        var BG = {
+          night: '#10182a',
+          sea: '#e7f0f3',
+          forest: '#f6f4ef',
+          sunset: '#f4e0d3',
+          moon: '#1d1c23',
+          cloud: '#f2f3f5'
+        };
         try {
           var theme = 'auto';
           var raw = localStorage.getItem('hitoiki:settings:v1');
@@ -21,6 +30,11 @@
             theme = h >= 5 && h < 10 ? 'sea' : h >= 10 && h < 16 ? 'forest' : h >= 16 && h < 19 ? 'sunset' : 'night';
           }
           document.documentElement.setAttribute('data-theme', theme);
+          var bg = BG[theme];
+          if (bg) {
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', bg);
+          }
         } catch (e) {
           /* localStorage 不可などでは既定テーマのまま */
         }
