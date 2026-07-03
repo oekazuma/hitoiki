@@ -52,8 +52,20 @@ jobs:
     timeout-minutes: 15
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy-retry.outputs.page_url || steps.deploy.outputs.page_url }}
     steps:
+      # GitHub Pages 側の一時的な "Deployment failed, try again later." に備え、
+      # 1回目は失敗を許容し、失敗したときだけ少し待って2回目を試す
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: deploy
+        continue-on-error: true
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+
+      - name: Wait before retry
+        if: steps.deploy.outcome == 'failure'
+        run: sleep 20
+
+      - name: Deploy to GitHub Pages (retry)
+        id: deploy-retry
+        if: steps.deploy.outcome == 'failure'
         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
