@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "svelte-vitals": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@svelte-vitals/mcp"
+      ]
+    }
+  }
+}
