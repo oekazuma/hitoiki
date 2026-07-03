@@ -37,7 +37,7 @@
     "eslint-config-prettier": "catalog:",
     "eslint-plugin-svelte": "catalog:",
     "globals": "catalog:",
-    "jsdom": "catalog:",
+    "happy-dom": "catalog:",
     "prettier": "catalog:",
     "prettier-plugin-svelte": "catalog:",
     "sharp": "catalog:",
