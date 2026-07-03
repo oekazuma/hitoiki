@@ -65,3 +65,23 @@ describe('app.css との同期', () => {
     }
   });
 });
+
+// app.html のちらつき防止スクリプトの時間帯判定が resolveAutoTheme とずれないことを保証する。
+// インラインスクリプトは ES モジュールを import できないため時間窓を複製しており、
+// 変更時に片方だけ直すと初回描画のテーマがアプリ本体と食い違う。それを検知する。
+describe('app.html(ちらつき防止スクリプト)との同期', () => {
+  const html = readFileSync(resolve(process.cwd(), 'src/app.html'), 'utf-8');
+
+  // `theme = h >= 5 && ... : 'night';` の右辺(三項演算式)だけを取り出す
+  const match = html.match(/theme = (h >= [\s\S]*?);/);
+
+  it('時間帯判定の式が app.html から取り出せる', () => {
+    expect(match).not.toBeNull();
+  });
+
+  it.each(Array.from({ length: 24 }, (_, h) => h))('%i 時の判定が resolveAutoTheme と一致する', (hour) => {
+    const expr = match![1];
+    const inlineResolve = new Function('h', `return ${expr};`) as (h: number) => string;
+    expect(inlineResolve(hour)).toBe(resolveAutoTheme(hour));
+  });
+});
