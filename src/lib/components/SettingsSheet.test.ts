@@ -26,6 +26,25 @@ describe('SettingsSheet', () => {
     }
   });
 
+  it('秒数の調整はデフォルトで折りたたまれ、パターンのすぐ下にある', () => {
+    const settings = createSettings(null);
+    const { container } = render(SettingsSheet, { open: true, settings });
+
+    const details = container.querySelector('details');
+    expect(details).not.toBeNull();
+    expect(details?.open).toBe(false);
+
+    // スライダーは折りたたみの中にある
+    const slider = screen.getByRole('slider', { name: /すう/ });
+    expect(details?.contains(slider)).toBe(true);
+
+    // 並び順: 呼吸のパターン → 秒数の調整(折りたたみ)
+    const presetGroup = screen.getByText('呼吸のパターン').closest('fieldset');
+    expect(presetGroup).not.toBeNull();
+    const position = presetGroup!.compareDocumentPosition(details!);
+    expect(position & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   it('スライダーを動かすとカスタム扱いになる', async () => {
     const settings = createSettings(null);
     render(SettingsSheet, { open: true, settings });

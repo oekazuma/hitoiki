@@ -63,6 +63,26 @@
     {/each}
   </fieldset>
 
+  <details class="advanced">
+    <summary>秒数を自分で調整する</summary>
+    <fieldset>
+      <legend class="visually-hidden">秒数の調整</legend>
+      {#each sliders as slider (slider.key)}
+        <label class="slider">
+          <span>{slider.label}: {settings.custom[slider.key]}秒</span>
+          <input
+            type="range"
+            min={slider.min}
+            max="10"
+            step="1"
+            value={settings.custom[slider.key]}
+            oninput={(e) => settings.updateCustom({ [slider.key]: e.currentTarget.valueAsNumber })}
+          />
+        </label>
+      {/each}
+    </fieldset>
+  </details>
+
   <fieldset>
     <legend>テーマ</legend>
     {#each themeOptions as option (option.id)}
@@ -75,23 +95,6 @@
           onchange={() => settings.setTheme(option.id)}
         />
         <span>{option.label}</span>
-      </label>
-    {/each}
-  </fieldset>
-
-  <fieldset>
-    <legend>秒数の調整</legend>
-    {#each sliders as slider (slider.key)}
-      <label class="slider">
-        <span>{slider.label}: {settings.custom[slider.key]}秒</span>
-        <input
-          type="range"
-          min={slider.min}
-          max="10"
-          step="1"
-          value={settings.custom[slider.key]}
-          oninput={(e) => settings.updateCustom({ [slider.key]: e.currentTarget.valueAsNumber })}
-        />
       </label>
     {/each}
   </fieldset>
@@ -144,6 +147,39 @@
     color: var(--fg-soft);
     padding: 0;
     margin-bottom: 0.5rem;
+  }
+
+  .advanced {
+    margin: 0 0 1rem;
+  }
+
+  .advanced summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.875rem;
+    color: var(--fg-soft);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  /* 開閉マーカーを控えめな三角に統一する */
+  .advanced summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .advanced summary::before {
+    content: '▸';
+    margin-right: 0.5rem;
+    transition: transform 0.2s;
+  }
+
+  .advanced[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .advanced fieldset {
+    margin: 0.5rem 0 0;
   }
 
   .preset,
