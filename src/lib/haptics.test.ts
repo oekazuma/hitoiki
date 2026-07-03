@@ -45,6 +45,11 @@ describe('canVibrate', () => {
     withVibrate(() => true);
     expect(canVibrate()).toBe(true);
   });
+
+  it('navigator.vibrate が関数でなければ false(存在しても呼べない場合)', () => {
+    Object.defineProperty(navigator, 'vibrate', { value: undefined, configurable: true, writable: true });
+    expect(canVibrate()).toBe(false);
+  });
 });
 
 describe('vibrate', () => {

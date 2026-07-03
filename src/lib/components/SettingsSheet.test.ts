@@ -1,12 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 import { tick } from 'svelte';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { PRESETS } from '$lib/breathing/presets';
 import { createSettings } from '$lib/settings.svelte';
 import SettingsSheet from './SettingsSheet.svelte';
 
 describe('SettingsSheet', () => {
+  afterEach(() => {
+    // 振動対応をスタブしたテストの後始末(他テストへ漏らさない)
+    if ('vibrate' in navigator) delete (navigator as { vibrate?: unknown }).vibrate;
+  });
+
   it('プリセットを選ぶと設定が切り替わる', async () => {
     const user = userEvent.setup();
     const settings = createSettings(null);
@@ -60,6 +65,17 @@ describe('SettingsSheet', () => {
     render(SettingsSheet, { open: true, settings });
     // jsdom の navigator に vibrate は無い(iOS Safari 相当)
     expect(screen.queryByRole('checkbox', { name: /振動/ })).toBeNull();
+  });
+
+  it('振動対応の環境ではマウント後に振動トグルを表示する', async () => {
+    // 表示判定はマウント後の effect で行う(プリレンダー HTML との hydration 不一致を避けるため)。
+    // jsdom は effect を同期フラッシュするので tick 前後の差は再現できないが、
+    // 対応環境でトグルが出ること自体の回帰ガードとして残す。
+    Object.defineProperty(navigator, 'vibrate', { value: () => true, configurable: true, writable: true });
+    const settings = createSettings(null);
+    render(SettingsSheet, { open: true, settings });
+    await tick();
+    expect(screen.queryByRole('checkbox', { name: /振動/ })).not.toBeNull();
   });
 
   it('テーマを選ぶと設定が切り替わる', async () => {

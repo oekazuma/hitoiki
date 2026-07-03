@@ -9,8 +9,17 @@
   let dialogEl: HTMLDialogElement | undefined = $state();
 
   // Vibration API 対応端末(Android 等)のみトグルを表示する。
-  // iOS Safari は 26.5 で隠しスイッチのハックが塞がれ、Web からの触覚出力手段が無い
-  const showVibrationToggle = canVibrate();
+  // iOS Safari は 26.5 で隠しスイッチのハックが塞がれ、Web からの触覚出力手段が無い。
+  // prerender = true のため、判定はマウント後にだけ行う(InstallHint と同じ手法)。初期化時に
+  // 評価するとプリレンダー HTML(常に非表示)と hydration 後の DOM が食い違い、ちらつく。
+  // $derived(canVibrate()) にすると hydration 時に評価され不一致が戻るため、あえて
+  // マウント信号を effect で立てる($derived に置き換えられない意図的な形)。
+  // eslint-disable-next-line svelte/prefer-writable-derived
+  let mounted = $state(false);
+  $effect(() => {
+    mounted = true;
+  });
+  const showVibrationToggle = $derived(mounted && canVibrate());
 
   const themeOptions: { id: ThemeSetting; label: string }[] = [
     { id: 'auto', label: 'おまかせ(時間帯でかわる)' },

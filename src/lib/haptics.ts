@@ -18,7 +18,7 @@ export const PHASE_VIBRATION: Partial<Record<PhaseName, number | number[]>> = {
 export const TAP_VIBRATION = 30;
 
 export function canVibrate(): boolean {
-  return typeof navigator !== 'undefined' && 'vibrate' in navigator;
+  return typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function';
 }
 
 export function vibrate(pattern: number | number[]): void {
