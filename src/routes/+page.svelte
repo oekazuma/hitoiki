@@ -1,8 +1,8 @@
 <script lang="ts">
   import { MetaTags } from 'svelte-meta-tags';
-  import { WebHaptics, type Vibration } from 'web-haptics';
   import { BreathingEngine } from '$lib/breathing/engine';
   import type { PhaseName } from '$lib/breathing/types';
+  import { PHASE_VIBRATION, TAP_VIBRATION, vibrate } from '$lib/haptics';
   import { createSettings } from '$lib/settings.svelte';
   import { resolveAutoTheme, THEMES } from '$lib/themes';
   import BreathingCircle from '$lib/components/BreathingCircle.svelte';
@@ -60,30 +60,9 @@
     } else {
       startGuide();
     }
-    // タップの合図(ユーザー操作の直後に発火させることで iOS でも確実に鳴る)
-    if (settings.vibration) {
-      void hapticsInstance().trigger([{ duration: 30, intensity: 0.4 }]);
-    }
+    // タップの合図(振動対応環境のみ)
+    if (settings.vibration) vibrate(TAP_VIBRATION);
   }
-
-  // 触覚フィードバック(web-haptics: Android は Vibration API、iOS 18+ Safari はシステム触覚)
-  let haptics: WebHaptics | null = null;
-  function hapticsInstance(): WebHaptics {
-    haptics ??= new WebHaptics();
-    return haptics;
-  }
-  $effect(() => () => haptics?.destroy());
-
-  // フェーズごとのパターン: 目を閉じていても「すって(1回)/はいて(2回)/とめて(弱く)」が分かるように
-  const PHASE_HAPTICS: Partial<Record<PhaseName, Vibration[]>> = {
-    inhale: [{ duration: 60, intensity: 0.6 }],
-    holdIn: [{ duration: 25, intensity: 0.35 }],
-    exhale: [
-      { duration: 50, intensity: 0.6 },
-      { delay: 90, duration: 50, intensity: 0.6 }
-    ],
-    holdOut: [{ duration: 25, intensity: 0.35 }]
-  };
 
   async function acquireWakeLock() {
     try {
@@ -124,8 +103,8 @@
   $effect(() =>
     engine.subscribe((s) => {
       if (s.running && s.phase !== prevPhase && settings.vibration) {
-        const pattern = PHASE_HAPTICS[s.phase];
-        if (pattern) void hapticsInstance().trigger(pattern);
+        const pattern = PHASE_VIBRATION[s.phase];
+        if (pattern !== undefined) vibrate(pattern);
       }
       prevPhase = s.phase;
     })

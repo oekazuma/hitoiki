@@ -47,7 +47,6 @@
     "typescript": "catalog:",
     "typescript-eslint": "catalog:",
     "vite": "catalog:",
-    "vitest": "catalog:",
-    "web-haptics": "catalog:"
+    "vitest": "catalog:"
   }
 }
