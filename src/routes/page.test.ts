@@ -23,13 +23,34 @@ describe('メイン画面', () => {
     render(Page);
 
     expect(document.title).toBe('ひといき');
+    const description = 'すって、はいて、ひといき。画面に合わせて呼吸するだけの、呼吸ガイドです。';
     const og = (property: string) =>
       document.head.querySelector(`meta[property="${property}"]`)?.getAttribute('content');
     expect(og('og:image')).toBe('https://oekazuma.github.io/hitoiki/ogp.png');
     expect(og('og:url')).toBe('https://oekazuma.github.io/hitoiki/');
+    // description / og:description は svelte-meta-tags が動的に出すため svelte-vitals では
+    // 誤検知(Missing)になる。実出力にあることをここで回帰ガードする。
+    expect(og('og:description')).toBe(description);
+    expect(document.head.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(description);
     expect(document.head.querySelector('meta[name="twitter:card"]')?.getAttribute('content')).toBe(
       'summary_large_image'
     );
+  });
+
+  it('JSON-LD(構造化データ)が出力される', () => {
+    render(Page);
+
+    const script = document.head.querySelector('script[type="application/ld+json"]');
+    expect(script).not.toBeNull();
+
+    const data = JSON.parse(script!.textContent ?? '{}');
+    expect(data['@context']).toBe('https://schema.org');
+    expect(data['@type']).toBe('WebApplication');
+    expect(data.name).toBe('ひといき');
+    expect(data.url).toBe('https://oekazuma.github.io/hitoiki/');
+    // 医療目的ではないため LifestyleApplication(HealthApplication ではない)
+    expect(data.applicationCategory).toBe('LifestyleApplication');
+    expect(data.inLanguage).toBe('ja');
   });
 
   it('ヘッダー(ロゴ)とフッター(免責・ライセンス・GitHub)が表示される', () => {
