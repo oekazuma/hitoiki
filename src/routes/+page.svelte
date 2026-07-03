@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { MetaTags } from 'svelte-meta-tags';
+  import { JsonLd, MetaTags } from 'svelte-meta-tags';
   import { BreathingEngine } from '$lib/breathing/engine';
   import type { PhaseName } from '$lib/breathing/types';
   import { PHASE_VIBRATION, TAP_VIBRATION, vibrate } from '$lib/haptics';
@@ -22,6 +22,20 @@
     height: 640,
     alt: 'ひといき — すって、はいて、ひといき。'
   };
+
+  // 構造化データ(検索エンジン向け)。医療目的ではないため applicationCategory は
+  // LifestyleApplication とする。値は上の定数を再利用し、重複を作らない。
+  // @context は JsonLd コンポーネントが自動で付与する。
+  const JSON_LD = {
+    '@type': 'WebApplication',
+    name: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    applicationCategory: 'LifestyleApplication',
+    operatingSystem: 'Any',
+    inLanguage: 'ja',
+    isAccessibleForFree: true
+  } as const;
 
   const settings = createSettings();
   const engine = new BreathingEngine();
@@ -144,6 +158,8 @@
   }}
 />
 
+<JsonLd schema={JSON_LD} />
+
 <div class="app" class:running={engineState.running}>
   <header class="site-header">
     <svg class="logo-mark" viewBox="0 0 160 160" aria-hidden="true">
@@ -161,7 +177,7 @@
       <circle cx="80" cy="80" r="52" fill="var(--circle-bg)" opacity="0.45" />
       <circle cx="80" cy="80" r="38" fill="var(--circle-bg)" />
     </svg>
-    <span class="logo-text">ひといき</span>
+    <h1 class="logo-text">ひといき</h1>
   </header>
 
   <main class="stage">
@@ -242,6 +258,8 @@
   }
 
   .logo-text {
+    margin: 0;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.08em;
   }
