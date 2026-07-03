@@ -11,6 +11,10 @@ node_modules
 /.svelte-kit
 /build
 
+# Vitest browser mode の生成物(失敗時スクリーンショット・添付)
+**/__screenshots__/
+.vitest-attachments/
+
 # OS
 .DS_Store
 Thumbs.db
