@@ -79,9 +79,10 @@ describe('app.html(ちらつき防止スクリプト)との同期', () => {
     expect(match).not.toBeNull();
   });
 
-  it.each(Array.from({ length: 24 }, (_, h) => h))('%i 時の判定が resolveAutoTheme と一致する', (hour) => {
-    const expr = match![1];
-    const inlineResolve = new Function('h', `return ${expr};`) as (h: number) => string;
+  // 抽出に失敗したら上のテストだけが 1 件落ちる(ケースを空にして連鎖失敗を防ぐ)
+  const hours = match ? Array.from({ length: 24 }, (_, h) => h) : [];
+  it.each(hours)('%i 時の判定が resolveAutoTheme と一致する', (hour) => {
+    const inlineResolve = new Function('h', `return ${match![1]};`) as (h: number) => string;
     expect(inlineResolve(hour)).toBe(resolveAutoTheme(hour));
   });
 });
@@ -98,11 +99,14 @@ describe('app.html(theme-color の背景色マップ)との同期', () => {
 
   const inlineBg = match ? (new Function(`return ${match[1]};`) as () => Record<string, string>)() : {};
 
-  it.each(THEME_IDS)('%s の theme-color 用背景色が themes.ts と一致する', (id) => {
+  // 抽出に失敗したら上のテストだけが 1 件落ちる(ケースを空にして連鎖失敗を防ぐ)
+  const ids = match ? THEME_IDS : [];
+  it.each(ids)('%s の theme-color 用背景色が themes.ts と一致する', (id) => {
     expect(inlineBg[id]).toBe(THEMES[id].colors.bg);
   });
 
   it('マップに余分な(themes.ts に無い)テーマ ID が無い', () => {
+    expect(match).not.toBeNull();
     expect(Object.keys(inlineBg).sort()).toEqual([...THEME_IDS].sort());
   });
 });
