@@ -63,13 +63,13 @@ describe('SettingsSheet', () => {
   it('振動非対応の環境では振動トグルを表示しない', () => {
     const settings = createSettings(null);
     render(SettingsSheet, { open: true, settings });
-    // jsdom の navigator に vibrate は無い(iOS Safari 相当)
+    // happy-dom の navigator に vibrate は無い(iOS Safari 相当)
     expect(screen.queryByRole('checkbox', { name: /振動/ })).toBeNull();
   });
 
   it('振動対応の環境ではマウント後に振動トグルを表示する', async () => {
     // 表示判定はマウント後の effect で行う(プリレンダー HTML との hydration 不一致を避けるため)。
-    // jsdom は effect を同期フラッシュするので tick 前後の差は再現できないが、
+    // テスト環境は effect を同期フラッシュするので tick 前後の差は再現できないが、
     // 対応環境でトグルが出ること自体の回帰ガードとして残す。
     Object.defineProperty(navigator, 'vibrate', { value: () => true, configurable: true, writable: true });
     const settings = createSettings(null);

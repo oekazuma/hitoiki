@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { PHASE_ORDER } from './breathing/types';
 import { canVibrate, PHASE_VIBRATION, TAP_VIBRATION, vibrate } from './haptics';
 
-/** navigator.vibrate を一時的に差し込む(jsdom の navigator には無い) */
+/** navigator.vibrate を一時的に差し込む(happy-dom の navigator には無い) */
 function withVibrate(impl: (pattern: number | number[]) => boolean) {
   Object.defineProperty(navigator, 'vibrate', { value: impl, configurable: true, writable: true });
 }
