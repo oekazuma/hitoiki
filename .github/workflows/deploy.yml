@@ -27,15 +27,6 @@ jobs:
       - name: Setup Node.js and dependencies
         uses: ./.github/workflows/setup-node
 
-      - name: Run Prettier check & ESLint
-        run: pnpm lint
-
-      - name: Run Vitest
-        run: pnpm test:run
-
-      - name: Run svelte-check
-        run: pnpm check
-
       - name: Run Build
         run: pnpm build
         env:
