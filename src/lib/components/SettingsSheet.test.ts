@@ -88,24 +88,6 @@ describe('SettingsSheet', () => {
     expect(settings.theme).toBe('moon');
   });
 
-  it('シートの外(バックドロップ)をタップすると閉じる', async () => {
-    const settings = createSettings(null);
-    const { container } = render(SettingsSheet, { open: true, settings });
-    const dialog = container.querySelector('dialog') as HTMLDialogElement;
-
-    // バックドロップのクリックは dialog 自身が target になる
-    await fireEvent.click(dialog);
-    await tick();
-    expect(dialog.open).toBe(false);
-  });
-
-  it('シートの中身をタップしても閉じない', async () => {
-    const settings = createSettings(null);
-    const { container } = render(SettingsSheet, { open: true, settings });
-    const dialog = container.querySelector('dialog') as HTMLDialogElement;
-
-    await fireEvent.click(screen.getByText('せってい'));
-    await tick();
-    expect(dialog.open).toBe(true);
-  });
+  // <dialog> の開閉挙動(showModal / Esc / バックドロップ)は実ブラウザが忠実なため、
+  // SettingsSheet.browser.test.ts(browser project)で検証する。
 });
