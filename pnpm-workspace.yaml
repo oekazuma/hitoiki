@@ -8,7 +8,7 @@ catalog:
   '@eslint/compat': ^2.1.0
   '@eslint/js': ^10.0.1
   '@sveltejs/adapter-static': ^3.0.10
-  '@sveltejs/kit': ^2.68.0
+  '@sveltejs/kit': ^2.69.1
   '@sveltejs/vite-plugin-svelte': ^7.1.2
   '@testing-library/jest-dom': ^6.9.1
   '@testing-library/svelte': ^5.4.2
