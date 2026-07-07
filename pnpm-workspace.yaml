@@ -14,7 +14,7 @@ catalog:
   '@testing-library/svelte': ^5.4.2
   '@testing-library/user-event': ^14.6.1
   '@types/eslint': ^9.6.1
-  '@types/node': ^26.0.1
+  '@types/node': ^26.1.0
   '@vitest/browser-playwright': ^4.1.9
   eslint: ^10.6.0
   eslint-config-prettier: ^10.1.8
