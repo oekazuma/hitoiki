@@ -106,7 +106,7 @@ importers:
         version: 10.0.1(eslint@10.6.0)
       '@svelte-vitals/vite':
         specifier: 'catalog:'
-        version: 0.12.0(@sveltejs/kit@2.68.0(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.0(@types/node@26.0.1)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.0(@types/node@26.0.1)))(@typescript-eslint/types@8.62.1)(vite@8.1.0(@types/node@26.0.1))
+        version: 0.12.0(@sveltejs/kit@2.69.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.3(@types/node@26.1.0)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.3(@types/node@26.1.0)))(@typescript-eslint/types@8.62.1)(vite@8.1.3(@types/node@26.1.0))
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.69.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.3(@types/node@26.1.0)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.3(@types/node@26.1.0)))
@@ -2373,16 +2373,16 @@ snapshots:
     transitivePeerDependencies:
       - '@typescript-eslint/types'
 
-  '@svelte-vitals/vite@0.12.0(@sveltejs/kit@2.68.0(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.0(@types/node@26.0.1)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.0(@types/node@26.0.1)))(@typescript-eslint/types@8.62.1)(vite@8.1.0(@types/node@26.0.1))':
+  '@svelte-vitals/vite@0.12.0(@sveltejs/kit@2.69.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.3(@types/node@26.1.0)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.3(@types/node@26.1.0)))(@typescript-eslint/types@8.62.1)(vite@8.1.3(@types/node@26.1.0))':
     dependencies:
       '@svelte-vitals/core': 0.22.0(@typescript-eslint/types@8.62.1)
       esm-env: 1.2.2
       node-html-parser: 8.0.4
       svelte-vitals: 0.21.0(@typescript-eslint/types@8.62.1)
       tinyglobby: 0.2.17
-      vite: 8.1.0(@types/node@26.0.1)
+      vite: 8.1.3(@types/node@26.1.0)
     optionalDependencies:
-      '@sveltejs/kit': 2.68.0(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.0(@types/node@26.0.1)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.0(@types/node@26.0.1))
+      '@sveltejs/kit': 2.69.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.3(@types/node@26.1.0)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.3(@types/node@26.1.0))
     transitivePeerDependencies:
       - '@typescript-eslint/types'
 
