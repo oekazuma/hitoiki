@@ -1,4 +1,7 @@
 minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - '@svelte-vitals/*'
+  - 'svelte-vitals'
 
 allowBuilds:
   esbuild: true
@@ -7,6 +10,7 @@ allowBuilds:
 catalog:
   '@eslint/compat': ^2.1.0
   '@eslint/js': ^10.0.1
+  '@svelte-vitals/vite': ^0.12.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/kit': ^2.69.1
   '@sveltejs/vite-plugin-svelte': ^7.1.2

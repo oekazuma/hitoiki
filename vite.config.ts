@@ -4,8 +4,10 @@ import { svelteTesting } from '@testing-library/svelte/vite';
 import { playwright } from '@vitest/browser-playwright';
 import { defineConfig } from 'vite';
 
+import { svelteVitals } from '@svelte-vitals/vite';
+
 export default defineConfig({
-  plugins: [sveltekit(), svelteTesting()],
+  plugins: [svelteVitals({ ui: true }), sveltekit(), svelteTesting()],
   test: {
     projects: [
       {

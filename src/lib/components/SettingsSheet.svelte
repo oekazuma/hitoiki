@@ -16,6 +16,7 @@
   // マウント信号を effect で立てる($derived に置き換えられない意図的な形)。
   // eslint-disable-next-line svelte/prefer-writable-derived
   let mounted = $state(false);
+  // svelte-vitals-disable-next-line CORRECT002
   $effect(() => {
     mounted = true;
   });

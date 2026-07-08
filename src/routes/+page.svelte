@@ -96,8 +96,9 @@
   }
 
   // 設定変更は次サイクルの頭から反映する
+  const pattern = $derived(settings.custom);
   $effect(() => {
-    engine.setPattern({ ...settings.custom });
+    engine.setPattern({ ...pattern });
   });
 
   // テーマ: 「おまかせ」は時間帯で自動選択し、1分ごとに再評価する
