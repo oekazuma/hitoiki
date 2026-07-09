@@ -13,8 +13,8 @@ catalogs:
       specifier: ^10.0.1
       version: 10.0.1
     '@svelte-vitals/vite':
-      specifier: ^0.12.0
-      version: 0.12.0
+      specifier: ^0.13.0
+      version: 0.13.0
     '@sveltejs/adapter-static':
       specifier: ^3.0.10
       version: 3.0.10
@@ -106,7 +106,7 @@ importers:
         version: 10.0.1(eslint@10.6.0)
       '@svelte-vitals/vite':
         specifier: 'catalog:'
-        version: 0.12.0(@sveltejs/kit@2.69.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.3(@types/node@26.1.0)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.3(@types/node@26.1.0)))(@typescript-eslint/types@8.62.1)(vite@8.1.3(@types/node@26.1.0))
+        version: 0.13.0(@sveltejs/kit@2.69.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.3(@types/node@26.1.0)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.3(@types/node@26.1.0)))(@typescript-eslint/types@8.62.1)(vite@8.1.3(@types/node@26.1.0))
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.69.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.3(@types/node@26.1.0)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.3(@types/node@26.1.0)))
@@ -662,12 +662,12 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@svelte-vitals/core@0.22.0':
-    resolution: {integrity: sha512-XSORuY0aFzDFcbS8f8NhNw0gRJl9N4jdW10qcc05R6WLo6k3FpkkT17DH+WYHXTC3HkAS6GePfpZ2yUpbWcuQw==}
+  '@svelte-vitals/core@0.22.1':
+    resolution: {integrity: sha512-COwvSmtm7g/CSNv7ZrJFgA4OGCYyaGvEk/onz6tCLyafyPNZ/jw9GpGVJ1RdqFU/iatuQEyK3TmPhloWZoRMtA==}
     engines: {node: '>=22.13.0'}
 
-  '@svelte-vitals/vite@0.12.0':
-    resolution: {integrity: sha512-WcG7sE4kYtdUGIjHWfbBxc7ykq+vV6U7VxIwOaB+gNRjJ4J+pSFz/ns6JxrjcnXPWlFK4Scpwali2sjCgH0bVw==}
+  '@svelte-vitals/vite@0.13.0':
+    resolution: {integrity: sha512-LRZDrDFMgn5dC9KtQ6u+GlYUi2A+peSkbgZPFIpiSwUji5oCDIp+idkzx1lgVsBcMXcfvRyCdocaK0K0qzVRxw==}
     engines: {node: '>=22.13.0'}
     peerDependencies:
       '@sveltejs/kit': ^2.69.1
@@ -1413,8 +1413,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  node-html-parser@8.0.4:
-    resolution: {integrity: sha512-w2YxujN/TqrSIWGVNW/fVgKKfAyQeHMXCvnKZI0owLnfP0tfjdLecUoy9zhOMZGoEFk6eP5qSDyvUarjPl3bwQ==}
+  node-html-parser@9.0.0:
+    resolution: {integrity: sha512-MhdaHPyxnyYu/sf0TpiRvDnTrkum0UKHC7FdbDGIUQNlx3I7xzwXoyV0eMUMv/XU+lkJT1glOUzpDPq7b2p1Ew==}
 
   node@runtime:24.17.0:
     resolution:
@@ -1759,8 +1759,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  svelte-vitals@0.21.0:
-    resolution: {integrity: sha512-Qk3BerZdbmf7At5/UcNGIJpQ66Rg4A3ihH7TvJU6g2nFULOcarcBwT2UnzQIPnntu/LcCUChfnpPeJ57ctfB7g==}
+  svelte-vitals@0.22.1:
+    resolution: {integrity: sha512-tiydCYYgoj1kEqKNi1AU9tYl9NO38w73blvkjNC5AhIoyTT5KvifYMDKNwogdhWWxOky4z+kKzXmWBhknVu9CQ==}
     engines: {node: '>=22.13.0'}
     hasBin: true
 
@@ -2367,18 +2367,18 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@svelte-vitals/core@0.22.0(@typescript-eslint/types@8.62.1)':
+  '@svelte-vitals/core@0.22.1(@typescript-eslint/types@8.62.1)':
     dependencies:
       svelte: 5.56.4(@typescript-eslint/types@8.62.1)
     transitivePeerDependencies:
       - '@typescript-eslint/types'
 
-  '@svelte-vitals/vite@0.12.0(@sveltejs/kit@2.69.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.3(@types/node@26.1.0)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.3(@types/node@26.1.0)))(@typescript-eslint/types@8.62.1)(vite@8.1.3(@types/node@26.1.0))':
+  '@svelte-vitals/vite@0.13.0(@sveltejs/kit@2.69.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.3(@types/node@26.1.0)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.3(@types/node@26.1.0)))(@typescript-eslint/types@8.62.1)(vite@8.1.3(@types/node@26.1.0))':
     dependencies:
-      '@svelte-vitals/core': 0.22.0(@typescript-eslint/types@8.62.1)
+      '@svelte-vitals/core': 0.22.1(@typescript-eslint/types@8.62.1)
       esm-env: 1.2.2
-      node-html-parser: 8.0.4
-      svelte-vitals: 0.21.0(@typescript-eslint/types@8.62.1)
+      node-html-parser: 9.0.0
+      svelte-vitals: 0.22.1(@typescript-eslint/types@8.62.1)
       tinyglobby: 0.2.17
       vite: 8.1.3(@types/node@26.1.0)
     optionalDependencies:
@@ -3149,7 +3149,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  node-html-parser@8.0.4:
+  node-html-parser@9.0.0:
     dependencies:
       css-select: 5.2.2
       entities: 8.0.0
@@ -3396,10 +3396,10 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  svelte-vitals@0.21.0(@typescript-eslint/types@8.62.1):
+  svelte-vitals@0.22.1(@typescript-eslint/types@8.62.1):
     dependencies:
       '@clack/prompts': 1.7.0
-      '@svelte-vitals/core': 0.22.0(@typescript-eslint/types@8.62.1)
+      '@svelte-vitals/core': 0.22.1(@typescript-eslint/types@8.62.1)
       magicast: 0.5.3
       mri: 1.2.0
       smol-toml: 1.7.0
