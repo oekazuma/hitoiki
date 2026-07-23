@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
-      - uses: oekazuma/svelte-vitals/packages/action@86e84073bddea99530d2d6831378a68836443ee4 # @svelte-vitals/action@0.2.0
+      - uses: oekazuma/svelte-vitals-action@67ec0af79398845d01e4371d4953d08f6f6a244f # v0.4.0
         with:
           diff: origin/${{ github.base_ref }}
           baseline: origin/${{ github.base_ref }}
