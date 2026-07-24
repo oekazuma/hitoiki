@@ -16,7 +16,7 @@
     "test:browser": "vitest run --project browser",
     "icons": "node scripts/generate-icons.mjs"
   },
-  "packageManager": "pnpm@11.10.0",
+  "packageManager": "pnpm@11.15.1",
   "devEngines": {
     "runtime": {
       "name": "node",
