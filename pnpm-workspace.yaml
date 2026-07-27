@@ -24,7 +24,7 @@ catalog:
   eslint-config-prettier: ^10.1.8
   eslint-plugin-svelte: ^3.22.0
   globals: ^17.7.0
-  happy-dom: ^20.11.0
+  happy-dom: ^20.11.1
   playwright: ^1.61.1
   prettier: ^3.9.5
   prettier-plugin-svelte: ^4.1.1
