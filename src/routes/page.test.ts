@@ -68,15 +68,18 @@ describe('メイン画面', () => {
     );
   });
 
-  it('実行中はヘッダー・フッター・せっていが非表示になる(running クラス)', async () => {
+  it('実行中はヘッダー・フッター・せっていが非表示になる(hidden クラス)', async () => {
     const user = userEvent.setup();
     const { container } = render(Page);
+    const chrome = () => [...container.querySelectorAll('.site-header, .site-footer, .settings-button')];
+    const allHidden = () => chrome().every((el) => el.classList.contains('hidden'));
 
-    expect(container.querySelector('.app')?.classList.contains('running')).toBe(false);
+    expect(chrome()).toHaveLength(3);
+    expect(allHidden()).toBe(false);
     await user.click(screen.getByRole('button', { name: 'はじめる' }));
-    expect(container.querySelector('.app')?.classList.contains('running')).toBe(true);
+    expect(allHidden()).toBe(true);
     await user.click(screen.getByRole('button', { name: 'とめる' }));
-    expect(container.querySelector('.app')?.classList.contains('running')).toBe(false);
+    expect(allHidden()).toBe(false);
   });
 
   it('せっていボタンはタップ領域と独立して動く', async () => {
