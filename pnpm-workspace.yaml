@@ -20,7 +20,7 @@ catalog:
   '@types/eslint': ^9.6.1
   '@types/node': ^26.1.2
   '@vitest/browser-playwright': ^4.1.10
-  eslint: ^10.8.0
+  eslint: ^10.8.1
   eslint-config-prettier: ^10.1.8
   eslint-plugin-svelte: ^3.22.0
   globals: ^17.9.0
