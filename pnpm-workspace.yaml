@@ -10,7 +10,7 @@ allowBuilds:
 catalog:
   '@eslint/compat': ^2.1.0
   '@eslint/js': ^10.0.1
-  '@svelte-vitals/vite': ^0.29.1
+  '@svelte-vitals/vite': ^0.29.2
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/kit': ^2.70.2
   '@sveltejs/vite-plugin-svelte': ^7.3.0
