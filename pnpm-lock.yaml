@@ -13,7 +13,7 @@ catalogs:
       specifier: ^10.0.1
       version: 10.0.1
     '@svelte-vitals/vite':
-      specifier: ^0.29.6
+      specifier: ^0.29.7
       version: 0.29.7
     '@sveltejs/adapter-static':
       specifier: ^3.0.10
