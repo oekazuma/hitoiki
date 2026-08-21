@@ -12,7 +12,7 @@ catalog:
   '@eslint/js': ^10.0.1
   '@svelte-vitals/vite': ^0.31.1
   '@sveltejs/adapter-static': ^3.0.10
-  '@sveltejs/kit': ^2.70.2
+  '@sveltejs/kit': ^2.70.3
   '@sveltejs/vite-plugin-svelte': ^7.3.0
   '@testing-library/jest-dom': ^6.9.1
   '@testing-library/svelte': ^5.4.2
