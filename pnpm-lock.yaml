@@ -55,8 +55,8 @@ catalogs:
       specifier: ^17.11.0
       version: 17.11.0
     happy-dom:
-      specifier: ^20.11.13
-      version: 20.11.13
+      specifier: ^20.11.15
+      version: 20.11.15
     playwright:
       specifier: ^1.62.1
       version: 1.62.1
@@ -148,7 +148,7 @@ importers:
         version: 17.11.0
       happy-dom:
         specifier: 'catalog:'
-        version: 20.11.13
+        version: 20.11.15
       node:
         specifier: runtime:24.17.0
         version: runtime:24.17.0
@@ -184,7 +184,7 @@ importers:
         version: 8.2.2(@types/node@26.4.0)
       vitest:
         specifier: 'catalog:'
-        version: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.13)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.15)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
       vitest-browser-svelte:
         specifier: 'catalog:'
         version: 3.0.0(svelte@5.57.0(@typescript-eslint/types@8.68.0))(vitest@4.1.11)
@@ -804,9 +804,6 @@ packages:
   '@types/node@26.4.0':
     resolution: {integrity: sha512-faiGnoIrLH/V8cibOMEAZ8pMw6oXqSukl29ra4mN8GdaB2ZewzeaLj+INpV5N+Z1eKWzY+IzaIZH2EIR6YZRNQ==}
 
-  '@types/trusted-types@2.0.7':
-    resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
-
   '@types/whatwg-mimetype@3.0.2':
     resolution: {integrity: sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==}
 
@@ -1240,8 +1237,8 @@ packages:
     resolution: {integrity: sha512-C3t35z65PQpAHay/gzEu4J/7SNWXn2NhfC4RfZQPxyOqkPfDTizthxCPoSU48OazoVherCuCpFDKI1qcY425Gw==}
     engines: {node: '>= 22'}
 
-  happy-dom@20.11.13:
-    resolution: {integrity: sha512-UUGd67JqTs0BaH4UbTaq8jCxdtNoYjvbmZM5iwgQKK60tLad0p2uPc48WcVTj1MxlIP43z48WahJcViKbxnprQ==}
+  happy-dom@20.11.15:
+    resolution: {integrity: sha512-bj2gQIKzOYB6GAAJ/jrN/IFHQe79MhEOiMAspRRWiKebRoegvGDv2B6eUt8KiZMTEDvx6ri0fAF7Xh/umAUUZA==}
     engines: {node: '>=20.0.0'}
 
   html-encoding-sniffer@6.0.0:
@@ -1803,10 +1800,6 @@ packages:
     resolution: {integrity: sha512-a/TgKh+CYvGYDMFjn62B6AnvbV6rFFoHL+m1U2bCmKZMnmKKN/6ckzYnRpaXDCLxBZU45Flql1yiKAIkH4A6bg==}
     engines: {node: '>=24.16.0'}
     hasBin: true
-
-  svelte@5.56.10:
-    resolution: {integrity: sha512-Lcxbj8I/KAbpY+VjtY4ENQBV0dDCipfGAhqb51XQZ67CIQqXgsv/8dPkbILaj4Fb6/b6JAEM/PIVbILXgDQy2g==}
-    engines: {node: '>=18'}
 
   svelte@5.57.0:
     resolution: {integrity: sha512-NdbDn7fl4be1ViUG0oq/lvG6OZy3oENolV2ONjiqqsfVoeAfzaQAKUcEX3MrQod/Bebv1PgwET9rfXhgn9s4Kg==}
@@ -2415,7 +2408,7 @@ snapshots:
   '@svelte-vitals/core@0.50.1(@typescript-eslint/types@8.68.0)':
     dependencies:
       aria-query: 5.3.2
-      svelte: 5.56.10(@typescript-eslint/types@8.68.0)
+      svelte: 5.57.0(@typescript-eslint/types@8.68.0)
     transitivePeerDependencies:
       - '@typescript-eslint/types'
 
@@ -2500,7 +2493,7 @@ snapshots:
       svelte: 5.57.0(@typescript-eslint/types@8.68.0)
     optionalDependencies:
       vite: 8.2.2(@types/node@26.4.0)
-      vitest: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.13)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
+      vitest: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.15)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
 
   '@testing-library/user-event@14.6.6(@testing-library/dom@10.4.1)':
     dependencies:
@@ -2531,8 +2524,6 @@ snapshots:
   '@types/node@26.4.0':
     dependencies:
       undici-types: 8.3.0
-
-  '@types/trusted-types@2.0.7': {}
 
   '@types/whatwg-mimetype@3.0.2': {}
 
@@ -2637,7 +2628,7 @@ snapshots:
       '@vitest/mocker': 4.1.11(vite@8.2.2(@types/node@26.4.0))
       playwright: 1.62.1
       tinyrainbow: 3.1.0
-      vitest: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.13)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
+      vitest: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.15)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
     transitivePeerDependencies:
       - bufferutil
       - msw
@@ -2653,7 +2644,7 @@ snapshots:
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.1.0
-      vitest: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.13)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
+      vitest: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.15)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
       ws: 8.21.1
     transitivePeerDependencies:
       - bufferutil
@@ -3008,7 +2999,7 @@ snapshots:
 
   gunshi@0.37.1: {}
 
-  happy-dom@20.11.13:
+  happy-dom@20.11.15:
     dependencies:
       '@types/node': 26.4.0
       '@types/whatwg-mimetype': 3.0.2
@@ -3456,7 +3447,7 @@ snapshots:
       '@svelte-vitals/core': 0.50.1(@typescript-eslint/types@8.68.0)
       gunshi: 0.37.1
       magicast: 0.5.4
-      svelte: 5.56.10(@typescript-eslint/types@8.68.0)
+      svelte: 5.57.0(@typescript-eslint/types@8.68.0)
       tinyglobby: 0.2.17
     transitivePeerDependencies:
       - '@gunshi/plugin-global'
@@ -3464,27 +3455,6 @@ snapshots:
       - cac
       - citty
       - commander
-
-  svelte@5.56.10(@typescript-eslint/types@8.68.0):
-    dependencies:
-      '@jridgewell/remapping': 2.3.5
-      '@jridgewell/sourcemap-codec': 1.5.5
-      '@sveltejs/acorn-typescript': 1.0.11(acorn@8.17.0)
-      '@types/estree': 1.0.9
-      '@types/trusted-types': 2.0.7
-      acorn: 8.17.0
-      aria-query: 5.3.1
-      axobject-query: 4.1.0
-      clsx: 2.1.1
-      devalue: 5.8.2
-      esm-env: 1.2.2
-      esrap: 2.3.0(@typescript-eslint/types@8.68.0)
-      is-reference: 3.0.3
-      locate-character: 3.0.0
-      magic-string: 0.30.21
-      zimmerframe: 1.1.4
-    transitivePeerDependencies:
-      - '@typescript-eslint/types'
 
   svelte@5.57.0(@typescript-eslint/types@8.68.0):
     dependencies:
@@ -3594,9 +3564,9 @@ snapshots:
     dependencies:
       '@testing-library/svelte-core': 1.1.3(svelte@5.57.0(@typescript-eslint/types@8.68.0))
       svelte: 5.57.0(@typescript-eslint/types@8.68.0)
-      vitest: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.13)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
+      vitest: 4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.15)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0))
 
-  vitest@4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.13)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0)):
+  vitest@4.1.11(@types/node@26.4.0)(@vitest/browser-playwright@4.1.11)(happy-dom@20.11.15)(jsdom@29.1.1)(vite@8.2.2(@types/node@26.4.0)):
     dependencies:
       '@vitest/expect': 4.1.11
       '@vitest/mocker': 4.1.11(vite@8.2.2(@types/node@26.4.0))
@@ -3621,7 +3591,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 26.4.0
       '@vitest/browser-playwright': 4.1.11(playwright@1.62.1)(vite@8.2.2(@types/node@26.4.0))(vitest@4.1.11)
-      happy-dom: 20.11.13
+      happy-dom: 20.11.15
       jsdom: 29.1.1
     transitivePeerDependencies:
       - msw
