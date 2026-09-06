@@ -9,10 +9,12 @@ import { svelteVitals } from '@svelte-vitals/vite';
 export default defineConfig({
   plugins: [svelteVitals({ ui: true }), sveltekit(), svelteTesting()],
   test: {
+    // svelteTesting() は config フックで project ごとに自動 cleanup の setupFile を注入する。
+    // Vite サーバを共有すると unit project にフックが走らず cleanup されないため、共有しない。
+    sharedViteServer: false,
     projects: [
       {
         // ロジックと、matchMedia / PWA など制御が必要な DOM テスト(高速な happy-dom)
-        extends: true,
         test: {
           name: 'unit',
           environment: 'happy-dom',
@@ -23,7 +25,6 @@ export default defineConfig({
       },
       {
         // ブラウザ依存が強く実ブラウザが忠実なテスト(Chromium)
-        extends: true,
         // sveltekit の SSR 解決で svelte がサーバービルドに寄らないよう browser 条件を明示
         resolve: { conditions: ['browser'] },
         test: {
