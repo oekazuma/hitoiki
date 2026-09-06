@@ -11,13 +11,13 @@ const dialogEl = () => document.querySelector('dialog') as HTMLDialogElement;
 describe('SettingsSheet(dialog / browser)', () => {
   it('open=true でモーダルとして開く', async () => {
     const settings = createSettings(null);
-    render(SettingsSheet, { open: true, settings });
+    await render(SettingsSheet, { open: true, settings });
     await expect.poll(() => dialogEl()?.open).toBe(true);
   });
 
   it('Esc で閉じる(ブラウザネイティブの取り消し)', async () => {
     const settings = createSettings(null);
-    render(SettingsSheet, { open: true, settings });
+    await render(SettingsSheet, { open: true, settings });
     await expect.poll(() => dialogEl()?.open).toBe(true);
 
     await userEvent.keyboard('{Escape}');
@@ -26,7 +26,7 @@ describe('SettingsSheet(dialog / browser)', () => {
 
   it('シートの外(バックドロップ)をタップすると閉じる', async () => {
     const settings = createSettings(null);
-    render(SettingsSheet, { open: true, settings });
+    await render(SettingsSheet, { open: true, settings });
     await expect.poll(() => dialogEl()?.open).toBe(true);
 
     // バックドロップのクリックは dialog 自身が target になる
@@ -36,7 +36,7 @@ describe('SettingsSheet(dialog / browser)', () => {
 
   it('シートの中身をタップしても閉じない', async () => {
     const settings = createSettings(null);
-    render(SettingsSheet, { open: true, settings });
+    await render(SettingsSheet, { open: true, settings });
     await expect.poll(() => dialogEl()?.open).toBe(true);
 
     await page.getByRole('heading', { name: 'せってい' }).click();
