@@ -14,15 +14,14 @@ const CACHE = `hitoiki-${version}`;
 // 新バージョンは全タブが閉じられた後(=次回起動時)に有効化され、利用中に画面が変わらない
 sw.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) =>
-      // 1 ファイルの失敗で install 全体を落とさない。
-      // build はハッシュ付きで URL が変わるので HTTP キャッシュのままでよく、
-      // URL が変わらない files / prerendered だけ古い HTTP キャッシュを避けて取り直す
-      Promise.allSettled([
-        ...build.map((url) => cache.add(url)),
-        ...[...files, ...prerendered].map((url) => cache.add(new Request(url, { cache: 'reload' })))
-      ])
-    )
+    caches.open(CACHE).then(async (cache) => {
+      // 殻 HTML とハッシュ付き JS/CSS は版が揃わないと起動しない。
+      // デプロイ直後は CDN が古い HTML を返しつつ古い JS は 404 になり得るので、
+      // 1 件でも失敗したら install ごと失敗させて前の版のキャッシュを残す
+      await cache.addAll([...build, ...prerendered.map((url) => new Request(url, { cache: 'reload' }))]);
+      // 画像やフォントは 1 件の失敗で全体を捨てない。残りは使われたときに fetch ハンドラが入れる
+      await Promise.allSettled(files.map((url) => cache.add(new Request(url, { cache: 'reload' }))));
+    })
   );
 });
 
