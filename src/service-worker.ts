@@ -4,21 +4,31 @@
 /// <reference lib="webworker" />
 
 import { build, files, prerendered, version } from '$service-worker';
+import { stale } from './lib/sw-rules';
 
 const sw = self as unknown as ServiceWorkerGlobalScope;
 
 const CACHE = `hitoiki-${version}`;
-const ASSETS = [...build, ...files, ...prerendered];
 
 // skipWaiting / clients.claim は使わない:
 // 新バージョンは全タブが閉じられた後(=次回起動時)に有効化され、利用中に画面が変わらない
 sw.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));
+  event.waitUntil(
+    caches.open(CACHE).then((cache) =>
+      // 1 ファイルの失敗で install 全体を落とさない。
+      // build はハッシュ付きで URL が変わるので HTTP キャッシュのままでよく、
+      // URL が変わらない files / prerendered だけ古い HTTP キャッシュを避けて取り直す
+      Promise.allSettled([
+        ...build.map((url) => cache.add(url)),
+        ...[...files, ...prerendered].map((url) => cache.add(new Request(url, { cache: 'reload' })))
+      ])
+    )
+  );
 });
 
 sw.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))))
+    caches.keys().then((keys) => Promise.all(keys.filter((key) => stale(key, CACHE)).map((key) => caches.delete(key))))
   );
 });
 
