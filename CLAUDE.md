@@ -39,6 +39,7 @@ pnpm を使う(Corepack 経由、`packageManager` はリポジトリで固定)�
 ## 規約
 
 - Svelte 5 runes を使う(`$state` / `$derived` / `$props` / `$effect` / `$bindable`)。旧来の `export let` やストア(`writable`)は使わない。
+- `src/lib` は `#lib`(package.json の `imports`)で import し、実ファイルの拡張子まで書く(`#lib/themes.ts` / `#lib/settings.svelte.ts` / `#lib/components/Foo.svelte`)。subpath imports は拡張子を補完しないため省略できない。
 - ロジックは UI 非依存に切り出す(クラス or 純関数)。テストは `src/**/*.test.ts`。
 - コミットは Conventional Commits(日本語本文可。例: `fix: ...` / `feat: ...` / `docs: ...`)。
 - コメント・UI 文言は日本語。整形は prettier(シングルクォート・セミコロンあり・printWidth 120)。

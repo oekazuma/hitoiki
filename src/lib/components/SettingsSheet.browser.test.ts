@@ -1,7 +1,7 @@
 import { page, userEvent } from 'vitest/browser';
 import { describe, expect, it } from 'vitest';
 import { render } from 'vitest-browser-svelte';
-import { createSettings } from '#lib/settings.svelte.js';
+import { createSettings } from '#lib/settings.svelte.ts';
 import SettingsSheet from './SettingsSheet.svelte';
 
 // <dialog> の挙動は実ブラウザが最も忠実(happy-dom では showModal / Esc をポリフィルするだけ)。

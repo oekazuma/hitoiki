@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Settings } from '#lib/settings.svelte.js';
+  import type { Settings } from '#lib/settings.svelte.ts';
   import InstallHint from '#lib/components/InstallHint.svelte';
 
   // 実行中は呼吸に集中できるよう hidden で隠す(ヘッダー・せっていボタンと同じ扱い)。

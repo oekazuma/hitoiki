@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { BreathingEngine } from '#lib/breathing/engine.js';
-  import type { PhaseName } from '#lib/breathing/types.js';
-  import { PHASE_VIBRATION, TAP_VIBRATION, vibrate } from '#lib/haptics.js';
-  import { createSettings } from '#lib/settings.svelte.js';
-  import { resolveAutoTheme, THEMES } from '#lib/themes.js';
-  import { acquireWakeLock, releaseWakeLock } from '#lib/wake-lock.js';
+  import { BreathingEngine } from '#lib/breathing/engine.ts';
+  import type { PhaseName } from '#lib/breathing/types.ts';
+  import { PHASE_VIBRATION, TAP_VIBRATION, vibrate } from '#lib/haptics.ts';
+  import { createSettings } from '#lib/settings.svelte.ts';
+  import { resolveAutoTheme, THEMES } from '#lib/themes.ts';
+  import { acquireWakeLock, releaseWakeLock } from '#lib/wake-lock.ts';
   import BreathingCircle from '#lib/components/BreathingCircle.svelte';
   import LogoMark from '#lib/components/LogoMark.svelte';
   import SettingsSheet from '#lib/components/SettingsSheet.svelte';
