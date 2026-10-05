@@ -14,7 +14,7 @@ export default defineConfig({
       adapter: adapter(),
       paths: {
         // GitHub Pages のサブパス配信用。CI では BASE_PATH=/<リポジトリ名> を渡す
-        base: process.env.BASE_PATH ?? ''
+        base: (process.env.BASE_PATH as `/${string}` | undefined) ?? ''
       }
     }),
     svelteTesting()
