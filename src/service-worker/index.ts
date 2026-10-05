@@ -3,7 +3,7 @@ import { assets, immutable, prerendered } from '$app/manifest';
 import { asset, resolve } from '$app/paths';
 import { self as sw } from '$app/service-worker';
 import type { Path } from '$app/types';
-import { stale } from '#lib/sw-rules.js';
+import { stale } from '#lib/sw-rules.ts';
 
 const CACHE = `hitoiki-${version}`;
 

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { tick } from 'svelte';
 import { afterEach, describe, expect, it } from 'vitest';
 import { matchingQueries } from '../../vitest-setup';
-import { createSettings } from '#lib/settings.svelte.js';
+import { createSettings } from '#lib/settings.svelte.ts';
 import InstallHint from './InstallHint.svelte';
 
 // 注: プリレンダー HTML にヒントを含めない(ちらつき防止)ことは、

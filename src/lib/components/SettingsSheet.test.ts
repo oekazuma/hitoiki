@@ -2,8 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 import { tick } from 'svelte';
 import { afterEach, describe, expect, it } from 'vitest';
-import { PRESETS } from '#lib/breathing/presets.js';
-import { createSettings } from '#lib/settings.svelte.js';
+import { PRESETS } from '#lib/breathing/presets.ts';
+import { createSettings } from '#lib/settings.svelte.ts';
 import SettingsSheet from './SettingsSheet.svelte';
 
 describe('SettingsSheet', () => {
