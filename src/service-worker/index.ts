@@ -3,7 +3,7 @@ import { assets, immutable, prerendered } from '$app/manifest';
 import { asset, resolve } from '$app/paths';
 import { self as sw } from '$app/service-worker';
 import type { Path } from '$app/types';
-import { stale } from '#lib/sw-rules.ts';
+import { passthrough, stale } from '#lib/sw-rules.ts';
 
 const CACHE = `hitoiki-${version}`;
 
@@ -36,7 +36,7 @@ sw.addEventListener('activate', (event) => {
 sw.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
-  if (url.origin !== sw.location.origin) return;
+  if (url.origin !== sw.location.origin || passthrough(url.pathname)) return;
 
   event.respondWith(
     caches.match(event.request).then(
