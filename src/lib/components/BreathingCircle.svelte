@@ -1,6 +1,6 @@
 <script lang="ts">
   import { MediaQuery } from 'svelte/reactivity';
-  import { PHASE_LABELS, type PhaseName } from '$lib/breathing/types';
+  import { PHASE_LABELS, type PhaseName } from '#lib/breathing/types.js';
 
   let { phase, phaseProgress, running }: { phase: PhaseName; phaseProgress: number; running: boolean } = $props();
 

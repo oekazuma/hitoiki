@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { BreathingEngine } from '$lib/breathing/engine';
-  import type { PhaseName } from '$lib/breathing/types';
-  import { PHASE_VIBRATION, TAP_VIBRATION, vibrate } from '$lib/haptics';
-  import { createSettings } from '$lib/settings.svelte';
-  import { resolveAutoTheme, THEMES } from '$lib/themes';
-  import { acquireWakeLock, releaseWakeLock } from '$lib/wake-lock';
-  import BreathingCircle from '$lib/components/BreathingCircle.svelte';
-  import LogoMark from '$lib/components/LogoMark.svelte';
-  import SettingsSheet from '$lib/components/SettingsSheet.svelte';
-  import SiteFooter from '$lib/components/SiteFooter.svelte';
-  import SiteMeta from '$lib/components/SiteMeta.svelte';
+  import { BreathingEngine } from '#lib/breathing/engine.js';
+  import type { PhaseName } from '#lib/breathing/types.js';
+  import { PHASE_VIBRATION, TAP_VIBRATION, vibrate } from '#lib/haptics.js';
+  import { createSettings } from '#lib/settings.svelte.js';
+  import { resolveAutoTheme, THEMES } from '#lib/themes.js';
+  import { acquireWakeLock, releaseWakeLock } from '#lib/wake-lock.js';
+  import BreathingCircle from '#lib/components/BreathingCircle.svelte';
+  import LogoMark from '#lib/components/LogoMark.svelte';
+  import SettingsSheet from '#lib/components/SettingsSheet.svelte';
+  import SiteFooter from '#lib/components/SiteFooter.svelte';
+  import SiteMeta from '#lib/components/SiteMeta.svelte';
 
   // タップから最初の「すって」までの間(呼吸に合流するための静止時間)
   const LEAD_IN_SECONDS = 1.5;

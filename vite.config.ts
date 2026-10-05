@@ -1,4 +1,5 @@
 /// <reference types="vitest/config" />
+import adapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { svelteTesting } from '@testing-library/svelte/vite';
 import { playwright } from '@vitest/browser-playwright';
@@ -7,7 +8,17 @@ import { defineConfig } from 'vite';
 import { svelteVitals } from '@svelte-vitals/vite';
 
 export default defineConfig({
-  plugins: [svelteVitals({ ui: true }), sveltekit(), svelteTesting()],
+  plugins: [
+    svelteVitals({ ui: true }),
+    sveltekit({
+      adapter: adapter(),
+      paths: {
+        // GitHub Pages のサブパス配信用。CI では BASE_PATH=/<リポジトリ名> を渡す
+        base: process.env.BASE_PATH ?? ''
+      }
+    }),
+    svelteTesting()
+  ],
   test: {
     // svelteTesting() は config フックで project ごとに自動 cleanup の setupFile を注入する。
     // Vite サーバを共有すると unit project にフックが走らず cleanup されないため、共有しない。
