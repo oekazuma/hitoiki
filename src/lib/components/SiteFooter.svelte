@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Settings } from '$lib/settings.svelte';
-  import InstallHint from '$lib/components/InstallHint.svelte';
+  import type { Settings } from '#lib/settings.svelte.js';
+  import InstallHint from '#lib/components/InstallHint.svelte';
 
   // 実行中は呼吸に集中できるよう hidden で隠す(ヘッダー・せっていボタンと同じ扱い)。
   let { settings, hidden = false }: { settings: Settings; hidden?: boolean } = $props();

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { PRESETS } from '$lib/breathing/presets';
-  import { canVibrate } from '$lib/haptics';
-  import type { Settings } from '$lib/settings.svelte';
-  import { THEME_IDS, THEMES, type ThemeSetting } from '$lib/themes';
+  import { PRESETS } from '#lib/breathing/presets.js';
+  import { canVibrate } from '#lib/haptics.js';
+  import type { Settings } from '#lib/settings.svelte.js';
+  import { THEME_IDS, THEMES, type ThemeSetting } from '#lib/themes.js';
 
   let { open = $bindable(false), settings }: { open: boolean; settings: Settings } = $props();
 

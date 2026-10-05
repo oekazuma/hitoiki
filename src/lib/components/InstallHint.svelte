@@ -1,6 +1,6 @@
 <script lang="ts">
   import { MediaQuery } from 'svelte/reactivity';
-  import type { Settings } from '$lib/settings.svelte';
+  import type { Settings } from '#lib/settings.svelte.js';
 
   let { settings }: { settings: Settings } = $props();
 

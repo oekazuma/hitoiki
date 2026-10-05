@@ -32,9 +32,9 @@ pnpm を使う(Corepack 経由、`packageManager` はリポジトリで固定)�
 - `src/lib/themes.ts` — テーマパレットと `resolveAutoTheme`(時間帯おまかせ)。
 - `src/lib/components/` — `BreathingCircle` / `SettingsSheet` / `InstallHint`。
 - `src/app.html` — 描画前のちらつき防止インラインスクリプト(テーマを描画前に適用)。
-- `src/service-worker.ts` — オフライン用 cache-first。`skipWaiting` は使わない(利用中に画面を変えないため、次回起動で更新)。
+- `src/service-worker/index.ts` — オフライン用 cache-first。`skipWaiting` は使わない(利用中に画面を変えないため、次回起動で更新)。
 
-配信: `prerender = true`(`+layout.ts`)、`adapter-static`。GitHub Pages のサブパス用に build 時 `BASE_PATH=/<repo>` を渡す(`svelte.config.js`)。
+配信: `prerender = true`(`+layout.ts`)、`adapter-static`。GitHub Pages のサブパス用に build 時 `BASE_PATH=/<repo>` を渡す(`vite.config.ts` の `sveltekit({ paths })`)。
 
 ## 規約
 
