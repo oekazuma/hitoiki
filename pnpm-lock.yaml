@@ -213,7 +213,7 @@ catalogs:
       specifier: ^17.13.0
       version: 17.13.0
     happy-dom:
-      specifier: ^20.14.5
+      specifier: ^20.14.6
       version: 20.14.6
     playwright:
       specifier: ^1.64.0
