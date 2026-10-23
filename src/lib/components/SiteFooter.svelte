@@ -27,7 +27,9 @@
 <style>
   .site-footer {
     position: absolute;
-    inset: auto env(safe-area-inset-right) calc(0.5rem + env(safe-area-inset-bottom)) env(safe-area-inset-left);
+    inset: auto 0 calc(0.5rem + env(safe-area-inset-bottom));
+    /* 左右のセーフエリアが非対称でも円と同じ画面中央にそろえるため、大きい側の値で両側をあける */
+    padding-inline: max(env(safe-area-inset-left), env(safe-area-inset-right));
     z-index: 1;
     text-align: center;
     font-size: 0.75rem;
