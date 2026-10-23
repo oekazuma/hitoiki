@@ -46,7 +46,8 @@
 <style>
   .guide {
     position: relative;
-    width: min(72vw, 320px);
+    /* 横長で背の低い画面(折りたたみ端末の内側画面や Split View)でもヘッダー・フッターと重ならないよう高さでも抑える */
+    width: min(72vw, 100dvh - 15rem, 320px);
     aspect-ratio: 1;
     display: grid;
     place-items: center;

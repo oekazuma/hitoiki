@@ -27,7 +27,7 @@
 <style>
   .site-footer {
     position: absolute;
-    inset: auto 0 calc(0.5rem + env(safe-area-inset-bottom));
+    inset: auto env(safe-area-inset-right) calc(0.5rem + env(safe-area-inset-bottom)) env(safe-area-inset-left);
     z-index: 1;
     text-align: center;
     font-size: 0.75rem;

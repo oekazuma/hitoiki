@@ -156,7 +156,7 @@
   .site-header {
     position: absolute;
     top: calc(0.75rem + env(safe-area-inset-top));
-    left: 1rem;
+    left: calc(1rem + env(safe-area-inset-left));
     z-index: 1;
     display: flex;
     align-items: center;
@@ -174,7 +174,7 @@
   .settings-button {
     position: absolute;
     top: calc(0.75rem + env(safe-area-inset-top));
-    right: 0.75rem;
+    right: calc(0.75rem + env(safe-area-inset-right));
     z-index: 1;
     padding: 0.5rem 1rem;
     color: var(--fg-soft);
