@@ -137,6 +137,19 @@
     color: var(--fg);
   }
 
+  /* 幅に余裕がある画面(折りたたみ端末の内側画面や横向き)では、中央の円を隠さないよう右側に出す */
+  @media (min-width: 720px) {
+    .sheet {
+      width: 380px;
+      height: 100dvh;
+      max-height: none;
+      margin: 0 0 0 auto;
+      border-radius: 20px 0 0 20px;
+      padding: calc(1.5rem + env(safe-area-inset-top)) calc(1.5rem + env(safe-area-inset-right))
+        calc(1.5rem + env(safe-area-inset-bottom)) 1.5rem;
+    }
+  }
+
   /* 背後が見えるよう、うっすらとだけ暗くする */
   .sheet::backdrop {
     background: rgba(0, 0, 0, 0.12);
