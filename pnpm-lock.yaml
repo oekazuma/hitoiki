@@ -198,8 +198,8 @@ catalogs:
       specifier: ^5.4.2
       version: 5.4.2
     '@testing-library/user-event':
-      specifier: ^14.6.9
-      version: 14.6.9
+      specifier: ^14.6.10
+      version: 14.6.10
     '@types/eslint':
       specifier: ^9.6.1
       version: 9.6.1
@@ -291,7 +291,7 @@ importers:
         version: 5.4.2(svelte@5.57.3(@typescript-eslint/types@8.72.2))(vite@8.3.8(@types/node@26.6.6))(vitest@5.1.0)
       '@testing-library/user-event':
         specifier: 'catalog:'
-        version: 14.6.9(@testing-library/dom@10.4.2)
+        version: 14.6.10(@testing-library/dom@10.4.2)
       '@types/eslint':
         specifier: 'catalog:'
         version: 9.6.1
@@ -895,8 +895,8 @@ packages:
       vitest:
         optional: true
 
-  '@testing-library/user-event@14.6.9':
-    resolution: {integrity: sha512-/8boTjZHNXFi8JGUI2Ev05cq0Szh0OX35Bamkq6CK1ne+l1Xm8BKE3+nGgsnFgaYk0MX67Vh59cZDsNz5lJJEg==}
+  '@testing-library/user-event@14.6.10':
+    resolution: {integrity: sha512-tA4stGNp3mLGOGO+lh87UA56Tz4c8NVGBSkyIF58O+W/bs2Re9BCI9xihnL70+DsThncFznE0skS88SM1D2hyg==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
@@ -2478,7 +2478,7 @@ snapshots:
       vite: 8.3.8(@types/node@26.6.6)
       vitest: 5.1.0(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/ui@5.1.0)(happy-dom@20.14.6)(vite@8.3.8(@types/node@26.6.6))
 
-  '@testing-library/user-event@14.6.9(@testing-library/dom@10.4.2)':
+  '@testing-library/user-event@14.6.10(@testing-library/dom@10.4.2)':
     dependencies:
       '@testing-library/dom': 10.4.2
 
